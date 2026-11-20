@@ -24,6 +24,7 @@ const UI = {
 
     connected: false,
     desktopName: "",
+    clipboardText: "",
 
     statusTimeout: null,
     hideKeyboardTimeout: null,
@@ -344,12 +345,15 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // Capture the actual browser paste data. noVNC focuses a hidden
-        // textarea for keyboard input, so do not treat that field as a
-        // normal browser text box.
-        document.addEventListener('paste', (event) => {
-            if (!UI.rfb || !UI.connected) return;
+        // Ctrl+V / Cmd+V: refresh the shared clipboard variable from
+        // the computer, then send that exact text to the Linux desktop.
+        document.addEventListener('keydown', (event) => {
+            const key = event.key ? event.key.toLowerCase() : '';
+            const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
 
+            if (!isPaste || !UI.rfb || !UI.connected) return;
+
+            // Leave normal paste alone when the user is editing a browser field.
             const target = event.target;
             if (target && target.id !== 'noVNC_keyboardinput' &&
                 (target.isContentEditable ||
@@ -357,23 +361,29 @@ const UI = {
                 return;
             }
 
-            const clipboard = event.clipboardData;
-            if (!clipboard) return;
-
-            const text = clipboard.getData('text/plain');
-            if (!text) return;
+            if (!navigator.clipboard || !navigator.clipboard.readText) {
+                Log.Warn("Computer clipboard reading is not available.");
+                return;
+            }
 
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            Log.Debug("Browser paste captured: " + text.length + " characters");
+            navigator.clipboard.readText().then((text) => {
+                if (!UI.rfb || !UI.connected) return;
 
-            if (!UI.rfb || !UI.connected) return;
+                // The shared variable is the source used for Linux paste.
+                UI.clipboardText = text;
+                const box = document.getElementById('noVNC_clipboard_text');
+                if (box) box.value = UI.clipboardText;
 
-            const box = document.getElementById('noVNC_clipboard_text');
-            if (box) box.value = text;
-
-            UI.rfb.clipboardPasteFrom(text);
+                UI.rfb.clipboardPasteFrom(UI.clipboardText);
+                Log.Debug("Computer clipboard sent to Linux: " +
+                          UI.clipboardText.length + " characters");
+            }).catch((err) => {
+                Log.Warn("Could not read computer clipboard: " + err);
+                UI.showStatus("Browser blocked clipboard reading. Allow clipboard access for this site, then try Ctrl+V again.", "warning");
+            });
         }, true);
     },
 
@@ -1013,13 +1023,13 @@ const UI = {
 
         Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
 
-        // Update the optional clipboard box if it is present.
+        // A copy inside Linux updates the shared variable, then the computer.
+        UI.clipboardText = text;
         const box = document.getElementById('noVNC_clipboard_text');
-        if (box) box.value = text;
+        if (box) box.value = UI.clipboardText;
 
-        // Copy the remote Linux clipboard to the computer clipboard.
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).catch((err) => {
+            navigator.clipboard.writeText(UI.clipboardText).catch((err) => {
                 Log.Warn("Could not write computer clipboard: " + err);
             });
         }
@@ -1028,9 +1038,10 @@ const UI = {
     },
 
     clipboardSend() {
-        const text = document.getElementById('noVNC_clipboard_text').value;
-        Log.Debug(">> UI.clipboardSend: " + text.substr(0, 40) + "...");
-        UI.rfb.clipboardPasteFrom(text);
+        const box = document.getElementById('noVNC_clipboard_text');
+        UI.clipboardText = box ? box.value : UI.clipboardText;
+        Log.Debug(">> UI.clipboardSend: " + UI.clipboardText.substr(0, 40) + "...");
+        UI.rfb.clipboardPasteFrom(UI.clipboardText);
         Log.Debug("<< UI.clipboardSend");
     },
 
