@@ -3,8 +3,9 @@ configuration {
     show-icons: true;
     icon-theme: "Yaru";
     font: "Sans 11";
-    display-drun: "Applications";
+    display-drun: "All applications";
     drun-display-format: "{name}";
+    drun-match-fields: "name,generic,exec,categories,keywords";
     disable-history: false;
     sorting-method: "fzf";
     hover-select: false;
@@ -46,12 +47,12 @@ prompt {
 entry {
     text-color: @foreground;
     background-color: transparent;
-    placeholder: "Search applications";
+    placeholder: "Search all applications";
     placeholder-color: @active;
 }
 listview {
     columns: 1;
-    lines: 8;
+    lines: 14;
     fixed-height: true;
     spacing: 4px;
     scrollbar: false;
