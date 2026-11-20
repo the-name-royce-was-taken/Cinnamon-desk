@@ -333,34 +333,54 @@ const UI = {
     },
 
     addClipboardHandlers() {
-        document.getElementById("noVNC_clipboard_button")
-            .addEventListener('click', UI.toggleClipboardPanel);
+        // The clipboard panel is optional and may be absent from the page.
+        const clipboardButton = document.getElementById("noVNC_clipboard_button");
+        if (clipboardButton) {
+            clipboardButton.addEventListener('click', UI.toggleClipboardPanel);
+        }
 
-        document.getElementById("noVNC_clipboard_text")
-            .addEventListener('change', UI.clipboardSend);
+        const clipboardBox = document.getElementById("noVNC_clipboard_text");
+        if (clipboardBox) {
+            clipboardBox.addEventListener('change', UI.clipboardSend);
+        }
 
-        // Catch Ctrl+V / Cmd+V when the remote desktop is focused.
+        // Read the computer clipboard on Ctrl+V / Cmd+V and send it
+        // directly to the remote VNC clipboard, even without a clipboard panel.
         document.addEventListener('keydown', (event) => {
-            const isPaste = (event.ctrlKey || event.metaKey) &&
-                            event.key.toLowerCase() === 'v';
+            const key = event.key ? event.key.toLowerCase() : '';
+            const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
 
             if (!isPaste || !UI.rfb || !UI.connected) return;
 
-            // Let the clipboard box handle its own normal paste.
-            if (event.target.id === 'noVNC_clipboard_text') return;
+            // Allow normal paste if an editable browser field has focus.
+            if (event.target &&
+                (event.target.id === 'noVNC_clipboard_text' ||
+                 event.target.isContentEditable ||
+                 /^(INPUT|TEXTAREA)$/i.test(event.target.tagName))) {
+                return;
+            }
 
             event.preventDefault();
             event.stopImmediatePropagation();
 
+            if (!navigator.clipboard || !navigator.clipboard.readText) {
+                Log.Warn("Computer clipboard reading is not available in this browser context.");
+                return;
+            }
+
             navigator.clipboard.readText().then((text) => {
                 Log.Debug("Computer clipboard read: " + text.length + " characters");
 
+                if (!UI.rfb || !UI.connected) return;
+
+                // Keep the box in sync if it exists, then send to Linux.
                 const box = document.getElementById('noVNC_clipboard_text');
-                box.value = text;
+                if (box) box.value = text;
+
                 UI.rfb.clipboardPasteFrom(text);
             }).catch((err) => {
                 Log.Warn("Could not read computer clipboard: " + err);
-                alert("Clipboard access failed: " + err);
+                UI.showStatus("Browser blocked clipboard reading. Allow clipboard access for this site, then try Ctrl+V again.", "warning");
             });
         }, true);
     },
@@ -1001,14 +1021,16 @@ const UI = {
 
         Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
 
-        // Update the noVNC clipboard box.
-        document.getElementById('noVNC_clipboard_text').value = text;
+        // Update the optional clipboard box if it is present.
+        const box = document.getElementById('noVNC_clipboard_text');
+        if (box) box.value = text;
 
-        // Copy the received Linux clipboard text to the computer.
-        navigator.clipboard.writeText(text)
-            .catch((err) => {
+        // Copy the remote Linux clipboard to the computer clipboard.
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).catch((err) => {
                 Log.Warn("Could not write computer clipboard: " + err);
             });
+        }
 
         Log.Debug("<< UI.clipboardReceive");
     },
