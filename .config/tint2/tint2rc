@@ -1,6 +1,6 @@
 # Cinnamon-desk visual panel: Windows-like taskbar with Ubuntu/Yaru colors
 # Panel items: E=Start launcher, T=window list, S=system tray, C=clock
-panel_items = ETS C
+panel_items = ETSC
 panel_monitor = all
 panel_position = bottom center horizontal
 panel_size = 100% 42
@@ -34,7 +34,7 @@ border_color = #e95420 100
 # Start button: click to open the Rofi application menu
 execp = new
 execp_command = echo "Start"
-execp_interval = 0
+execp_interval = 60
 execp_has_icon = 0
 execp_cache_icon = 0
 execp_continuous = 0
