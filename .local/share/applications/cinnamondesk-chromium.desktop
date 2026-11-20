@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Chromium Browser
+GenericName=Web Browser
+Comment=Browse the web with Chromium
+Exec=chromium --no-sandbox %U
+Icon=chromium
+Terminal=false
+Categories=Network;WebBrowser;
+StartupNotify=true
