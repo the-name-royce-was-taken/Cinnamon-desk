@@ -1,0 +1,2 @@
+# Super+Space opens the searchable application launcher
+Mod4 space :Exec rofi -show drun
