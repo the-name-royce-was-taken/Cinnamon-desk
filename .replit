@@ -4,6 +4,7 @@ pkill -f webvnc.py || true
 Xvnc :0 -rfbport=5900 -SecurityTypes=None -geometry 1920x1200 &
 sleep 2
 export XDG_CONFIG_HOME="$PWD/.config"
+export GTK2_RC_FILES="$PWD/.gtkrc-2.0"
 export XDG_DATA_DIRS="$PWD/.local/share:/nix/var/nix/profiles/default/share:$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 DISPLAY=:0 vncconfig -nowin &
 DISPLAY=:0 fluxbox &
