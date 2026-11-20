@@ -10,6 +10,5 @@
     # Lightweight desktop appearance additions
     pkgs.tint2
     pkgs.rofi
-    pkgs.yaru-theme
-  ];
+  ] ++ pkgs.lib.optional (pkgs ? yaru-theme) pkgs.yaru-theme;
 }
