@@ -12,6 +12,20 @@ export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/per-user/$U
 export GTK_THEME=Yaru-dark
 
 DISPLAY=:0 vncconfig -nowin &
+
+# Install this repository's Fluxbox style and keybindings into the runtime home.
+mkdir -p "$HOME/.fluxbox/styles"
+cp "$PWD/.fluxbox/styles/YaruDesk" "$HOME/.fluxbox/styles/YaruDesk"
+cat > "$HOME/.fluxbox/init" <<EOF
+session.styleFile: $HOME/.fluxbox/styles/YaruDesk
+session.keyFile: $PWD/.fluxbox/keys
+session.screen0.toolbar.visible: false
+session.screen0.toolbar.autoHide: false
+session.screen0.workspaces: 1
+session.screen0.focusModel: ClickToFocus
+session.screen0.fullMaximization: false
+EOF
+
 DISPLAY=:0 fluxbox &
 sleep 1
 
