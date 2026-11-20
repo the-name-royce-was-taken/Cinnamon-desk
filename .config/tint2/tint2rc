@@ -34,7 +34,7 @@ panel_background_id = 1
 
 # Start menu executor
 execp = new
-execp_command = printf 'Start'
+execp_command = printf 'Start\\n'
 execp_interval = 0
 execp_has_icon = 0
 execp_continuous = 0
