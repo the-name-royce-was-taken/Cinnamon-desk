@@ -3,8 +3,12 @@ pkill -f Xvnc || true
 pkill -f webvnc.py || true
 Xvnc :0 -rfbport=5900 -SecurityTypes=None -geometry 1920x1200 &
 sleep 2
+export XDG_CONFIG_HOME="$PWD/.config"
+export XDG_DATA_DIRS="$PWD/.local/share:/nix/var/nix/profiles/default/share:$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 DISPLAY=:0 vncconfig -nowin &
 DISPLAY=:0 fluxbox &
+sleep 1
+DISPLAY=:0 tint2 -c "$PWD/.config/tint2/tint2rc" &
 DISPLAY=:0 pcmanfm &
 DISPLAY=:0 xfce4-terminal &
 DISPLAY=:0 chromium --no-sandbox &
