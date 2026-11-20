@@ -385,6 +385,30 @@ const UI = {
                 UI.showStatus("Browser blocked clipboard reading. Allow clipboard access for this site, then try Ctrl+V again.", "warning");
             });
         }, true);
+
+        // Also support the browser's right-click Paste command.
+        document.addEventListener('paste', (event) => {
+            if (!UI.rfb || !UI.connected) return;
+
+            const target = event.target;
+            if (target && target.id !== 'noVNC_keyboardinput' &&
+                (target.isContentEditable ||
+                 /^(INPUT|TEXTAREA)$/i.test(target.tagName))) {
+                return;
+            }
+
+            if (!event.clipboardData) return;
+            const pastedText = event.clipboardData.getData('text/plain');
+            if (!pastedText) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            UI.clipboardText = pastedText;
+            const box = document.getElementById('noVNC_clipboard_text');
+            if (box) box.value = UI.clipboardText;
+            UI.rfb.clipboardPasteFrom(UI.clipboardText);
+        }, true);
     },
 
     // Add a call to save settings when the element changes,
