@@ -5,6 +5,7 @@
     pkgs.xfce.xfce4-terminal
     pkgs.chromium
     pkgs.python3
+    pkgs.pulseaudio
     pkgs.pcmanfm
 
     # Desktop appearance and icon themes
