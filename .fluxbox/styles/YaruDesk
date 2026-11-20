@@ -1,0 +1,72 @@
+# Cinnamon-desk Yaru-inspired Fluxbox style
+*font: Sans-10
+*textColor: #f4f4f5
+
+window.bevelWidth: 1
+window.borderWidth: 1
+window.borderColor: #17161d
+window.title.height: 30
+window.justify: Left
+window.roundCorners: TopLeft TopRight
+
+window.title.focus: flat
+window.title.focus.color: #e95420
+window.title.unfocus: flat
+window.title.unfocus.color: #34333f
+
+window.label.focus: flat
+window.label.focus.color: #e95420
+window.label.focus.textColor: #ffffff
+window.label.unfocus: flat
+window.label.unfocus.color: #34333f
+window.label.unfocus.textColor: #dedee3
+
+window.button.focus: flat
+window.button.focus.color: #e95420
+window.button.focus.picColor: #ffffff
+window.button.unfocus: flat
+window.button.unfocus.color: #34333f
+window.button.unfocus.picColor: #dedee3
+window.button.pressed: flat
+window.button.pressed.color: #c74719
+
+window.handleWidth: 4
+window.handle.focus: flat
+window.handle.focus.color: #24232e
+window.handle.unfocus: flat
+window.handle.unfocus.color: #34333f
+window.grip.focus: flat
+window.grip.focus.color: #e95420
+window.grip.unfocus: flat
+window.grip.unfocus.color: #34333f
+
+menu.bevelWidth: 1
+menu.borderWidth: 1
+menu.borderColor: #17161d
+menu.title: flat
+menu.title.color: #e95420
+menu.title.textColor: #ffffff
+menu.frame: flat
+menu.frame.color: #24232e
+menu.frame.textColor: #f4f4f5
+menu.hilite: flat
+menu.hilite.color: #e95420
+menu.hilite.textColor: #ffffff
+menu.itemHeight: 26
+
+toolbar: flat
+toolbar.color: #24232e
+toolbar.textColor: #ffffff
+toolbar.height: 34
+toolbar.borderWidth: 0
+toolbar.button: flat
+toolbar.button.color: #24232e
+toolbar.button.picColor: #ffffff
+toolbar.label: flat
+toolbar.label.color: #24232e
+toolbar.label.textColor: #ffffff
+toolbar.clock: flat
+toolbar.clock.color: #24232e
+toolbar.clock.textColor: #ffffff
+
+background: none
