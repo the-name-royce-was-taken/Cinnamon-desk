@@ -8,7 +8,10 @@ sleep 2
 
 export XDG_CONFIG_HOME="$PWD/.config"
 export GTK2_RC_FILES="$PWD/.gtkrc-2.0"
-export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/per-user/$USER/profile/share:/nix/var/nix/profiles/default/share:$PWD/.local/share:/usr/local/share:/usr/share"
+# Include user, project, Nix profile, system and standard application directories.
+# Rofi's drun mode scans these locations for .desktop launchers.
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="$HOME/.local/share:$PWD/.local/share:$HOME/.nix-profile/share:/nix/var/nix/profiles/per-user/$USER/profile/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share:/usr/local/share:/usr/share"
 export GTK_THEME=Yaru-dark
 
 DISPLAY=:0 vncconfig -nowin &
