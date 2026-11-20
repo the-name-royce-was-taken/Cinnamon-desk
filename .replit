@@ -1,0 +1,19 @@
+run = """
+pkill -f Xvnc || true
+pkill -f webvnc.py || true
+Xvnc :0 -rfbport=5900 -SecurityTypes=None -geometry 1920x1200 &
+sleep 2
+DISPLAY=:0 vncconfig -nowin &
+DISPLAY=:0 fluxbox &
+DISPLAY=:0 pcmanfm &
+DISPLAY=:0 xfce4-terminal &
+DISPLAY=:0 chromium --no-sandbox &
+python3 webvnc.py
+"""
+
+[nix]
+channel = "stable-24_05"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
