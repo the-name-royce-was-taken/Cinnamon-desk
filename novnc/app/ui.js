@@ -335,8 +335,34 @@ const UI = {
     addClipboardHandlers() {
         document.getElementById("noVNC_clipboard_button")
             .addEventListener('click', UI.toggleClipboardPanel);
+
         document.getElementById("noVNC_clipboard_text")
             .addEventListener('change', UI.clipboardSend);
+
+        // Catch Ctrl+V / Cmd+V when the remote desktop is focused.
+        document.addEventListener('keydown', (event) => {
+            const isPaste = (event.ctrlKey || event.metaKey) &&
+                            event.key.toLowerCase() === 'v';
+
+            if (!isPaste || !UI.rfb || !UI.connected) return;
+
+            // Let the clipboard box handle its own normal paste.
+            if (event.target.id === 'noVNC_clipboard_text') return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            navigator.clipboard.readText().then((text) => {
+                Log.Debug("Computer clipboard read: " + text.length + " characters");
+
+                const box = document.getElementById('noVNC_clipboard_text');
+                box.value = text;
+                UI.rfb.clipboardPasteFrom(text);
+            }).catch((err) => {
+                Log.Warn("Could not read computer clipboard: " + err);
+                alert("Clipboard access failed: " + err);
+            });
+        }, true);
     },
 
     // Add a call to save settings when the element changes,
@@ -971,8 +997,19 @@ const UI = {
     },
 
     clipboardReceive(e) {
-        Log.Debug(">> UI.clipboardReceive: " + e.detail.text.substr(0, 40) + "...");
-        document.getElementById('noVNC_clipboard_text').value = e.detail.text;
+        const text = e.detail.text;
+
+        Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
+
+        // Update the noVNC clipboard box.
+        document.getElementById('noVNC_clipboard_text').value = text;
+
+        // Copy the received Linux clipboard text to the computer.
+        navigator.clipboard.writeText(text)
+            .catch((err) => {
+                Log.Warn("Could not write computer clipboard: " + err);
+            });
+
         Log.Debug("<< UI.clipboardReceive");
     },
 
