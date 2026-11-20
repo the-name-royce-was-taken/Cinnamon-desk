@@ -3,20 +3,57 @@ pkill -f Xvnc || true
 pkill -f webvnc.py || true
 pkill -x tint2 || true
 
+# Start the VNC server first. Audio is optional and must never block VNC.
 Xvnc :0 -rfbport=5900 -SecurityTypes=None -geometry 1920x1200 &
 sleep 2
 
+export DISPLAY=:0
 export XDG_CONFIG_HOME="$PWD/.config"
 export GTK2_RC_FILES="$PWD/.gtkrc-2.0"
-# Include user, project, Nix profile, system and standard application directories.
-# Rofi's drun mode scans these locations for .desktop launchers.
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="$HOME/.local/share:$PWD/.local/share:$HOME/.nix-profile/share:/nix/var/nix/profiles/per-user/$USER/profile/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share:/usr/local/share:/usr/share"
 export GTK_THEME=Yaru-dark
 
+# AUDIO SETUP — virtual desktop output only; no microphone.
+# PulseAudio failure is isolated and does not stop the desktop or VNC.
+export XDG_RUNTIME_DIR="/tmp/runtime-$UID"
+mkdir -p "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_RUNTIME_DIR"
+
+if command -v pulseaudio >/dev/null 2>&1 && command -v pactl >/dev/null 2>&1 && command -v parec >/dev/null 2>&1; then
+  pulseaudio --start --exit-idle-time=-1 --log-target=file:/tmp/pulseaudio.log >/tmp/pulseaudio-start.log 2>&1 || true
+
+  AUDIO_READY=0
+  for attempt in 1 2 3 4 5; do
+    if pactl info >/dev/null 2>&1; then
+      AUDIO_READY=1
+      break
+    fi
+    sleep 1
+  done
+
+  if [ "$AUDIO_READY" = "1" ]; then
+    if ! pactl list short sinks 2>/dev/null | grep -q 'desktop_audio'; then
+      pactl load-module module-null-sink sink_name=desktop_audio rate=48000 channels=2 sink_properties=device.description=Desktop_Audio >/tmp/audio-sink.log 2>&1 || true
+    fi
+
+    if pactl list short sinks 2>/dev/null | grep -q 'desktop_audio'; then
+      pactl set-default-sink desktop_audio >/tmp/audio-default.log 2>&1 || true
+      export PULSE_SINK=desktop_audio
+      echo "Virtual desktop audio output is ready; browser playback is available from vnc.html."
+    else
+      echo "Could not create the virtual audio sink; continuing without audio."
+    fi
+  else
+    echo "PulseAudio did not start; continuing without audio."
+  fi
+else
+  echo "PulseAudio tools unavailable; continuing without audio."
+fi
+
 DISPLAY=:0 vncconfig -nowin &
 
-# Install this repository's Fluxbox style and keybindings into the runtime home.
+# Restore the repository's Fluxbox theme and keybindings.
 mkdir -p "$HOME/.fluxbox/styles"
 cp "$PWD/.fluxbox/styles/YaruDesk" "$HOME/.fluxbox/styles/YaruDesk"
 cat > "$HOME/.fluxbox/init" <<EOF
@@ -32,16 +69,16 @@ EOF
 DISPLAY=:0 fluxbox &
 sleep 1
 
-# Draw the PCManFM desktop (background and desktop icons), not a file-manager window.
+# Desktop background and icons.
 DISPLAY=:0 pcmanfm --desktop --profile=default &
 
-# Explicitly launch the custom taskbar and keep diagnostics if it fails.
+# Original custom Tint2 panel, including its Start menu.
 DISPLAY=:0 tint2 -c "$PWD/.config/tint2/tint2rc" >/tmp/tint2.log 2>&1 &
 
 DISPLAY=:0 xfce4-terminal &
 DISPLAY=:0 chromium --no-sandbox &
 
-# Reuse an already-running web VNC bridge instead of crashing on port 8080.
+# Start or reuse the noVNC WebSocket bridge. Audio uses its separate /audio path.
 python3 -c 'import socket; s=socket.socket(); s.settimeout(0.25); rc=s.connect_ex(("127.0.0.1",8080)); s.close(); raise SystemExit(0 if rc == 0 else 1)' \
   && echo "webvnc.py already listening on port 8080; reusing it" \
   || python3 webvnc.py
