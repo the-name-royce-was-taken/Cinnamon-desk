@@ -2,7 +2,7 @@ configuration {
     modi: "drun,run,window";
     show-icons: true;
     icon-theme: "Yaru";
-    font: "Ubuntu 11";
+    font: "Sans 11";
     display-drun: "Applications";
     drun-display-format: "{name}";
     disable-history: false;
@@ -10,17 +10,15 @@ configuration {
     hover-select: false;
     matching: "fuzzy";
 }
-
 * {
-    background: #20202a;
-    background-alt: #2d2d3a;
+    background: #24232e;
+    background-alt: #34333f;
     foreground: #f4f4f5;
     selected: #e95420;
-    active: #8b8b98;
+    active: #a0a0aa;
     urgent: #e95420;
     border-color: #e95420;
 }
-
 window {
     width: 42%;
     border: 2px;
@@ -28,34 +26,29 @@ window {
     border-color: @border-color;
     background-color: @background;
 }
-
 mainbox {
     padding: 12px;
     background-color: @background;
     children: [ inputbar, listview ];
     spacing: 12px;
 }
-
 inputbar {
     padding: 10px;
     border-radius: 8px;
     background-color: @background-alt;
     children: [ prompt, entry ];
 }
-
 prompt {
     text-color: @selected;
     background-color: transparent;
     padding: 0px 8px 0px 0px;
 }
-
 entry {
     text-color: @foreground;
     background-color: transparent;
     placeholder: "Search applications";
     placeholder-color: @active;
 }
-
 listview {
     columns: 1;
     lines: 8;
@@ -64,24 +57,20 @@ listview {
     scrollbar: false;
     background-color: transparent;
 }
-
 element {
     padding: 8px;
     border-radius: 7px;
     background-color: transparent;
     text-color: @foreground;
 }
-
 element selected {
     background-color: @selected;
     text-color: #ffffff;
 }
-
 element-icon {
     size: 24px;
     background-color: transparent;
 }
-
 element-text {
     vertical-align: 0.5;
     background-color: transparent;
