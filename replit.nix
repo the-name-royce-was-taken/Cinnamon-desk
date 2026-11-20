@@ -7,8 +7,10 @@
     pkgs.python3
     pkgs.pcmanfm
 
-    # Lightweight desktop appearance additions
+    # Desktop appearance and icon themes
     pkgs.tint2
     pkgs.rofi
-  ] ++ pkgs.lib.optional (pkgs ? yaru-theme) pkgs.yaru-theme;
+    pkgs.yaru-theme
+    pkgs.hicolor-icon-theme
+  ];
 }
