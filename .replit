@@ -1,11 +1,24 @@
 run = """
+# Stop any desktop/VNC processes left over from a previous run.
 pkill -f Xvnc || true
 pkill -f webvnc.py || true
-Xvnc :0 -rfbport=5900 -SecurityTypes=None -geometry 1024x768 &
+pkill -f cinnamon-session || true
+
+# Start the virtual X display.
+Xvnc :0 -rfbport=5900 -SecurityTypes=None -geometry 1280x800 -depth 24 &
 sleep 2
-DISPLAY=:0 fluxbox &
-DISPLAY=:0 xfce4-terminal &
-DISPLAY=:0 chromium --no-sandbox &
+
+# Start a real Cinnamon session on the VNC display.
+export DISPLAY=:0
+export XDG_SESSION_TYPE=x11
+dbus-run-session -- cinnamon-session --session cinnamon >/tmp/cinnamon-session.log 2>&1 &
+sleep 6
+
+# Launch useful desktop apps.
+DISPLAY=:0 xfce4-terminal >/tmp/terminal.log 2>&1 &
+DISPLAY=:0 chromium --no-sandbox >/tmp/chromium.log 2>&1 &
+
+# Serve noVNC and bridge its WebSocket connection to TigerVNC.
 python3 webvnc.py
 """
 
