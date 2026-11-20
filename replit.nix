@@ -6,5 +6,10 @@
     pkgs.chromium
     pkgs.python3
     pkgs.pcmanfm
+
+    # Lightweight desktop appearance additions
+    pkgs.tint2
+    pkgs.rofi
+    pkgs.yaru-theme
   ];
 }
