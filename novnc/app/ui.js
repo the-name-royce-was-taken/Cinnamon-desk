@@ -344,44 +344,36 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // Read the computer clipboard on Ctrl+V / Cmd+V and send it
-        // directly to the remote VNC clipboard, even without a clipboard panel.
-        document.addEventListener('keydown', (event) => {
-            const key = event.key ? event.key.toLowerCase() : '';
-            const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
+        // Capture the actual browser paste data. noVNC focuses a hidden
+        // textarea for keyboard input, so do not treat that field as a
+        // normal browser text box.
+        document.addEventListener('paste', (event) => {
+            if (!UI.rfb || !UI.connected) return;
 
-            if (!isPaste || !UI.rfb || !UI.connected) return;
-
-            // Allow normal paste if an editable browser field has focus.
-            if (event.target &&
-                (event.target.id === 'noVNC_clipboard_text' ||
-                 event.target.isContentEditable ||
-                 /^(INPUT|TEXTAREA)$/i.test(event.target.tagName))) {
+            const target = event.target;
+            if (target && target.id !== 'noVNC_keyboardinput' &&
+                (target.isContentEditable ||
+                 /^(INPUT|TEXTAREA)$/i.test(target.tagName))) {
                 return;
             }
+
+            const clipboard = event.clipboardData;
+            if (!clipboard) return;
+
+            const text = clipboard.getData('text/plain');
+            if (!text) return;
 
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            if (!navigator.clipboard || !navigator.clipboard.readText) {
-                Log.Warn("Computer clipboard reading is not available in this browser context.");
-                return;
-            }
+            Log.Debug("Browser paste captured: " + text.length + " characters");
 
-            navigator.clipboard.readText().then((text) => {
-                Log.Debug("Computer clipboard read: " + text.length + " characters");
+            if (!UI.rfb || !UI.connected) return;
 
-                if (!UI.rfb || !UI.connected) return;
+            const box = document.getElementById('noVNC_clipboard_text');
+            if (box) box.value = text;
 
-                // Keep the box in sync if it exists, then send to Linux.
-                const box = document.getElementById('noVNC_clipboard_text');
-                if (box) box.value = text;
-
-                UI.rfb.clipboardPasteFrom(text);
-            }).catch((err) => {
-                Log.Warn("Could not read computer clipboard: " + err);
-                UI.showStatus("Browser blocked clipboard reading. Allow clipboard access for this site, then try Ctrl+V again.", "warning");
-            });
+            UI.rfb.clipboardPasteFrom(text);
         }, true);
     },
 
