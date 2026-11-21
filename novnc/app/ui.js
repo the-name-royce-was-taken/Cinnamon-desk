@@ -25,9 +25,7 @@ const UI = {
     connected: false,
     desktopName: "",
     clipboardText: "",
-    clipboardSyncFrame: null,
     clipboardReadInProgress: false,
-    clipboardSyncPaused: false,
 
     statusTimeout: null,
     hideKeyboardTimeout: null,
@@ -348,9 +346,9 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // Paste the latest value already read by the background clipboard
-        // sync. Do not start a second, competing clipboard read here.
-        document.addEventListener('keydown', (event) => {
+        // Read the computer clipboard as part of the actual Ctrl+V
+        // user action, then send that exact text to the Linux desktop.
+        document.addEventListener('keydown', async (event) => {
             const key = event.key ? event.key.toLowerCase() : '';
             const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
 
@@ -367,10 +365,24 @@ const UI = {
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            const text = UI.clipboardText;
-            UI.rfb.clipboardPasteFrom(text);
-            Log.Debug("Synchronized computer clipboard sent to Linux: " +
-                      text.length + " characters");
+            if (!navigator.clipboard || !navigator.clipboard.readText) {
+                Log.Warn("Browser clipboard reading is unavailable.");
+                return;
+            }
+
+            try {
+                // This read is tied to the user's Ctrl+V gesture, which is
+                // permitted where background clipboard polling is blocked.
+                const text = await navigator.clipboard.readText();
+                if (!UI.rfb || !UI.connected) return;
+
+                UI.clipboardText = text;
+                UI.rfb.clipboardPasteFrom(text);
+                Log.Debug("Computer clipboard sent to Linux: " +
+                          text.length + " characters");
+            } catch (err) {
+                Log.Warn("Could not read computer clipboard on paste: " + err);
+            }
         }, true);
     },
 
@@ -1005,49 +1017,12 @@ const UI = {
         }
     },
 
-    // Continuously copy the computer clipboard into the shared variable.
+    // Browser security does not allow reliable background clipboard reads.
+    // Computer-to-Linux reads happen on the user's Ctrl+V action instead.
     startClipboardSync() {
-        if (UI.clipboardSyncFrame !== null) return;
-
-        const sync = async () => {
-            UI.clipboardSyncFrame = null;
-
-            if (!UI.connected || !UI.rfb) return;
-
-            if (UI.clipboardSyncPaused || UI.clipboardReadInProgress ||
-                !navigator.clipboard || !navigator.clipboard.readText) {
-                UI.clipboardSyncFrame = requestAnimationFrame(sync);
-                return;
-            }
-
-            UI.clipboardReadInProgress = true;
-            try {
-                const text = await navigator.clipboard.readText();
-
-                // A Linux copy may have started while this read was pending.
-                if (UI.connected && UI.rfb && !UI.clipboardSyncPaused) {
-                    UI.clipboardText = text;
-                    const box = document.getElementById('noVNC_clipboard_text');
-                    if (box) box.value = text;
-                }
-            } catch (err) {
-                Log.Warn("Computer clipboard sync is unavailable: " + err);
-            } finally {
-                UI.clipboardReadInProgress = false;
-                if (UI.connected && UI.rfb) {
-                    UI.clipboardSyncFrame = requestAnimationFrame(sync);
-                }
-            }
-        };
-
-        UI.clipboardSyncFrame = requestAnimationFrame(sync);
     },
 
     stopClipboardSync() {
-        if (UI.clipboardSyncFrame !== null) {
-            cancelAnimationFrame(UI.clipboardSyncFrame);
-            UI.clipboardSyncFrame = null;
-        }
         UI.clipboardReadInProgress = false;
     },
 
@@ -1056,23 +1031,15 @@ const UI = {
 
         Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
 
-        // Pause computer-to-Linux reads while this Linux copy is written
-        // into the computer clipboard, then let the frame loop resume.
-        UI.clipboardSyncPaused = true;
+        // A Linux copy updates the shared value and the computer clipboard.
         UI.clipboardText = text;
         const box = document.getElementById('noVNC_clipboard_text');
         if (box) box.value = UI.clipboardText;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(UI.clipboardText)
-                .catch((err) => {
-                    Log.Warn("Could not write computer clipboard: " + err);
-                })
-                .finally(() => {
-                    UI.clipboardSyncPaused = false;
-                });
-        } else {
-            UI.clipboardSyncPaused = false;
+            navigator.clipboard.writeText(UI.clipboardText).catch((err) => {
+                Log.Warn("Could not write computer clipboard: " + err);
+            });
         }
 
         Log.Debug("<< UI.clipboardReceive");
