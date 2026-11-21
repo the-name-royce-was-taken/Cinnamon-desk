@@ -1021,6 +1021,12 @@ const UI = {
 
             UI.clipboardSyncFrame = window.requestAnimationFrame(updateClipboardBox);
 
+            // Send the current sidebar clipboard contents to VNC every frame.
+            // This keeps the VNC clipboard continuously refreshed.
+            if (UI.rfb) {
+                UI.clipboardSend();
+            }
+
             if (UI.clipboardReadInProgress || UI.clipboardWritePending ||
                 !navigator.clipboard || !navigator.clipboard.readText) {
                 return;
