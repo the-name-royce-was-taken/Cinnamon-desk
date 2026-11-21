@@ -25,9 +25,9 @@ const UI = {
     connected: false,
     desktopName: "",
     clipboardText: "",
-    clipboardSyncTimer: null,
+    clipboardSyncFrame: null,
     clipboardReadInProgress: false,
-    clipboardWritePendingUntil: 0,
+    clipboardSyncPaused: false,
 
     statusTimeout: null,
     hideKeyboardTimeout: null,
@@ -1005,48 +1005,48 @@ const UI = {
         }
     },
 
-    // Keep the shared clipboard variable synchronized with the computer.
+    // Continuously copy the computer clipboard into the shared variable.
     startClipboardSync() {
-        if (UI.clipboardSyncTimer !== null) return;
+        if (UI.clipboardSyncFrame !== null) return;
 
         const sync = async () => {
-            if (!UI.connected || !UI.rfb || document.hidden ||
-                !document.hasFocus() ||
-                Date.now() < UI.clipboardWritePendingUntil ||
-                UI.clipboardReadInProgress ||
+            UI.clipboardSyncFrame = null;
+
+            if (!UI.connected || !UI.rfb) return;
+
+            if (UI.clipboardSyncPaused || UI.clipboardReadInProgress ||
                 !navigator.clipboard || !navigator.clipboard.readText) {
+                UI.clipboardSyncFrame = requestAnimationFrame(sync);
                 return;
             }
 
             UI.clipboardReadInProgress = true;
             try {
                 const text = await navigator.clipboard.readText();
-                if (!UI.connected || !UI.rfb ||
-                    Date.now() < UI.clipboardWritePendingUntil) return;
 
-                if (text !== UI.clipboardText) {
+                // A Linux copy may have started while this read was pending.
+                if (UI.connected && UI.rfb && !UI.clipboardSyncPaused) {
                     UI.clipboardText = text;
                     const box = document.getElementById('noVNC_clipboard_text');
                     if (box) box.value = text;
-                    Log.Debug("Computer clipboard synchronized: " +
-                              text.length + " characters");
                 }
             } catch (err) {
                 Log.Warn("Computer clipboard sync is unavailable: " + err);
             } finally {
                 UI.clipboardReadInProgress = false;
+                if (UI.connected && UI.rfb) {
+                    UI.clipboardSyncFrame = requestAnimationFrame(sync);
+                }
             }
         };
 
-        // Read immediately, then check once per second while connected.
-        sync();
-        UI.clipboardSyncTimer = setInterval(sync, 250);
+        UI.clipboardSyncFrame = requestAnimationFrame(sync);
     },
 
     stopClipboardSync() {
-        if (UI.clipboardSyncTimer !== null) {
-            clearInterval(UI.clipboardSyncTimer);
-            UI.clipboardSyncTimer = null;
+        if (UI.clipboardSyncFrame !== null) {
+            cancelAnimationFrame(UI.clipboardSyncFrame);
+            UI.clipboardSyncFrame = null;
         }
         UI.clipboardReadInProgress = false;
     },
@@ -1056,16 +1056,23 @@ const UI = {
 
         Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
 
-        // A copy inside Linux takes priority and updates the computer.
+        // Pause computer-to-Linux reads while this Linux copy is written
+        // into the computer clipboard, then let the frame loop resume.
+        UI.clipboardSyncPaused = true;
         UI.clipboardText = text;
-        UI.clipboardWritePendingUntil = Date.now() + 2000;
         const box = document.getElementById('noVNC_clipboard_text');
         if (box) box.value = UI.clipboardText;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(UI.clipboardText).catch((err) => {
-                Log.Warn("Could not write computer clipboard: " + err);
-            });
+            navigator.clipboard.writeText(UI.clipboardText)
+                .catch((err) => {
+                    Log.Warn("Could not write computer clipboard: " + err);
+                })
+                .finally(() => {
+                    UI.clipboardSyncPaused = false;
+                });
+        } else {
+            UI.clipboardSyncPaused = false;
         }
 
         Log.Debug("<< UI.clipboardReceive");
