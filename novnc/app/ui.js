@@ -376,14 +376,17 @@ const UI = {
                 const text = await navigator.clipboard.readText();
                 if (!UI.rfb || !UI.connected) return;
 
-                // Keep the shared variable and optional manual box in sync.
-                UI.clipboardText = text;
+                // Put the text into the noVNC clipboard sidebar field,
+                // then let the sidebar's own send handler forward it to Linux.
                 const box = document.getElementById('noVNC_clipboard_text');
-                if (box) box.value = UI.clipboardText;
-
-                UI.rfb.clipboardPasteFrom(UI.clipboardText);
-                Log.Debug("Computer clipboard sent to Linux: " +
-                          UI.clipboardText.length + " characters");
+                if (box) {
+                    box.value = text;
+                    UI.clipboardSend();
+                } else {
+                    Log.Warn("Clipboard sidebar field is unavailable.");
+                }
+                Log.Debug("Computer clipboard sent through sidebar: " +
+                          text.length + " characters");
             } catch (err) {
                 Log.Warn("Could not read computer clipboard on paste: " + err);
             }
@@ -403,13 +406,15 @@ const UI = {
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            UI.clipboardText = pastedText;
             const box = document.getElementById('noVNC_clipboard_text');
-            if (box) box.value = UI.clipboardText;
-
-            UI.rfb.clipboardPasteFrom(UI.clipboardText);
-            Log.Debug("Browser paste sent to Linux: " +
-                      UI.clipboardText.length + " characters");
+            if (box) {
+                box.value = pastedText;
+                UI.clipboardSend();
+                Log.Debug("Browser paste sent through sidebar: " +
+                          pastedText.length + " characters");
+            } else {
+                Log.Warn("Clipboard sidebar field is unavailable.");
+            }
         }, true);
     },
 
