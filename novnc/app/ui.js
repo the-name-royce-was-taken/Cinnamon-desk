@@ -376,13 +376,40 @@ const UI = {
                 const text = await navigator.clipboard.readText();
                 if (!UI.rfb || !UI.connected) return;
 
+                // Keep the shared variable and optional manual box in sync.
                 UI.clipboardText = text;
-                UI.rfb.clipboardPasteFrom(text);
+                const box = document.getElementById('noVNC_clipboard_text');
+                if (box) box.value = UI.clipboardText;
+
+                UI.rfb.clipboardPasteFrom(UI.clipboardText);
                 Log.Debug("Computer clipboard sent to Linux: " +
-                          text.length + " characters");
+                          UI.clipboardText.length + " characters");
             } catch (err) {
                 Log.Warn("Could not read computer clipboard on paste: " + err);
             }
+        }, true);
+
+        // A browser context-menu Paste produces a paste event. Read the
+        // text supplied by that user action and send the shared variable
+        // directly to the Linux desktop.
+        document.addEventListener('paste', (event) => {
+            if (!UI.rfb || !UI.connected) return;
+
+            const pastedText = event.clipboardData ?
+                event.clipboardData.getData('text/plain') : '';
+
+            if (!pastedText) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            UI.clipboardText = pastedText;
+            const box = document.getElementById('noVNC_clipboard_text');
+            if (box) box.value = UI.clipboardText;
+
+            UI.rfb.clipboardPasteFrom(UI.clipboardText);
+            Log.Debug("Browser paste sent to Linux: " +
+                      UI.clipboardText.length + " characters");
         }, true);
     },
 
