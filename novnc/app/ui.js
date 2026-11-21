@@ -348,24 +348,24 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // Ctrl+V / Cmd+V: refresh the shared clipboard variable from
-        // the computer, then send that exact text to the Linux desktop.
+        // Use the original, reliable Ctrl+V / Cmd+V path. Read the
+        // computer clipboard directly from the user's paste action.
         document.addEventListener('keydown', (event) => {
             const key = event.key ? event.key.toLowerCase() : '';
             const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
 
             if (!isPaste || !UI.rfb || !UI.connected) return;
 
-            // Leave normal paste alone when the user is editing a browser field.
-            const target = event.target;
-            if (target && target.id !== 'noVNC_keyboardinput' &&
-                (target.isContentEditable ||
-                 /^(INPUT|TEXTAREA)$/i.test(target.tagName))) {
+            // Let normal paste work in browser text fields.
+            if (event.target &&
+                (event.target.id === 'noVNC_clipboard_text' ||
+                 event.target.isContentEditable ||
+                 /^(INPUT|TEXTAREA)$/i.test(event.target.tagName))) {
                 return;
             }
 
             if (!navigator.clipboard || !navigator.clipboard.readText) {
-                Log.Warn("Computer clipboard reading is not available.");
+                Log.Warn("Computer clipboard reading is not available in this browser context.");
                 return;
             }
 
@@ -375,10 +375,9 @@ const UI = {
             navigator.clipboard.readText().then((text) => {
                 if (!UI.rfb || !UI.connected) return;
 
-                // Refresh the shared variable, then paste that exact value.
                 UI.clipboardText = text;
                 const box = document.getElementById('noVNC_clipboard_text');
-                if (box) box.value = UI.clipboardText;
+                if (box) box.value = text;
 
                 UI.rfb.clipboardPasteFrom(UI.clipboardText);
                 Log.Debug("Computer clipboard sent to Linux: " +
@@ -387,30 +386,6 @@ const UI = {
                 Log.Warn("Could not read computer clipboard: " + err);
                 UI.showStatus("Browser blocked clipboard reading. Allow clipboard access for this site, then try Ctrl+V again.", "warning");
             });
-        }, true);
-
-        // Also support the browser's right-click Paste command.
-        document.addEventListener('paste', (event) => {
-            if (!UI.rfb || !UI.connected) return;
-
-            const target = event.target;
-            if (target && target.id !== 'noVNC_keyboardinput' &&
-                (target.isContentEditable ||
-                 /^(INPUT|TEXTAREA)$/i.test(target.tagName))) {
-                return;
-            }
-
-            if (!event.clipboardData) return;
-            const pastedText = event.clipboardData.getData('text/plain');
-            if (!pastedText) return;
-
-            event.preventDefault();
-            event.stopImmediatePropagation();
-
-            UI.clipboardText = pastedText;
-            const box = document.getElementById('noVNC_clipboard_text');
-            if (box) box.value = UI.clipboardText;
-            UI.rfb.clipboardPasteFrom(UI.clipboardText);
         }, true);
     },
 
