@@ -348,8 +348,8 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // Use the original, reliable Ctrl+V / Cmd+V path. Read the
-        // computer clipboard directly from the user's paste action.
+        // Paste the latest value already read by the background clipboard
+        // sync. Do not start a second, competing clipboard read here.
         document.addEventListener('keydown', (event) => {
             const key = event.key ? event.key.toLowerCase() : '';
             const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
@@ -364,28 +364,13 @@ const UI = {
                 return;
             }
 
-            if (!navigator.clipboard || !navigator.clipboard.readText) {
-                Log.Warn("Computer clipboard reading is not available in this browser context.");
-                return;
-            }
-
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            navigator.clipboard.readText().then((text) => {
-                if (!UI.rfb || !UI.connected) return;
-
-                UI.clipboardText = text;
-                const box = document.getElementById('noVNC_clipboard_text');
-                if (box) box.value = text;
-
-                UI.rfb.clipboardPasteFrom(UI.clipboardText);
-                Log.Debug("Computer clipboard sent to Linux: " +
-                          UI.clipboardText.length + " characters");
-            }).catch((err) => {
-                Log.Warn("Could not read computer clipboard: " + err);
-                UI.showStatus("Browser blocked clipboard reading. Allow clipboard access for this site, then try Ctrl+V again.", "warning");
-            });
+            const text = UI.clipboardText;
+            UI.rfb.clipboardPasteFrom(text);
+            Log.Debug("Synchronized computer clipboard sent to Linux: " +
+                      text.length + " characters");
         }, true);
     },
 
@@ -1055,7 +1040,7 @@ const UI = {
 
         // Read immediately, then check once per second while connected.
         sync();
-        UI.clipboardSyncTimer = setInterval(sync, 1000);
+        UI.clipboardSyncTimer = setInterval(sync, 250);
     },
 
     stopClipboardSync() {
