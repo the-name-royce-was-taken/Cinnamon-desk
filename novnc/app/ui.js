@@ -26,6 +26,8 @@ const UI = {
     desktopName: "",
     clipboardText: "",
     clipboardReadInProgress: false,
+    clipboardSyncFrame: null,
+    clipboardWritePending: false,
 
     statusTimeout: null,
     hideKeyboardTimeout: null,
@@ -1049,12 +1051,49 @@ const UI = {
         }
     },
 
-    // Browser security does not allow reliable background clipboard reads.
-    // Computer-to-Linux reads happen on the user's Ctrl+V action instead.
+    // Keep checking the computer clipboard on every animation frame.
+    // Reads are serialized so a slow browser permission/API response cannot
+    // build up a backlog or stall the rest of the desktop UI.
     startClipboardSync() {
+        if (UI.clipboardSyncFrame !== null) return;
+
+        const updateClipboardBox = () => {
+            if (!UI.connected) {
+                UI.clipboardSyncFrame = null;
+                return;
+            }
+
+            UI.clipboardSyncFrame = window.requestAnimationFrame(updateClipboardBox);
+
+            if (UI.clipboardReadInProgress || UI.clipboardWritePending ||
+                !navigator.clipboard || !navigator.clipboard.readText) {
+                return;
+            }
+
+            UI.clipboardReadInProgress = true;
+            navigator.clipboard.readText().then((text) => {
+                if (!UI.connected || UI.clipboardWritePending) return;
+
+                // Keep the sidebar field as the authoritative noVNC clipboard.
+                const box = document.getElementById('noVNC_clipboard_text');
+                if (box && box.value !== text) box.value = text;
+                UI.clipboardText = text;
+            }).catch(() => {
+                // Clipboard reads can be denied until the browser grants access.
+                // Retry on the next animation frame without blocking the UI.
+            }).finally(() => {
+                UI.clipboardReadInProgress = false;
+            });
+        };
+
+        UI.clipboardSyncFrame = window.requestAnimationFrame(updateClipboardBox);
     },
 
     stopClipboardSync() {
+        if (UI.clipboardSyncFrame !== null) {
+            window.cancelAnimationFrame(UI.clipboardSyncFrame);
+            UI.clipboardSyncFrame = null;
+        }
         UI.clipboardReadInProgress = false;
     },
 
@@ -1063,14 +1102,17 @@ const UI = {
 
         Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
 
-        // A Linux copy updates the shared value and the computer clipboard.
+        // A Linux copy updates the sidebar field and computer clipboard.
         UI.clipboardText = text;
         const box = document.getElementById('noVNC_clipboard_text');
-        if (box) box.value = UI.clipboardText;
+        if (box) box.value = text;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(UI.clipboardText).catch((err) => {
+            UI.clipboardWritePending = true;
+            navigator.clipboard.writeText(text).catch((err) => {
                 Log.Warn("Could not write computer clipboard: " + err);
+            }).finally(() => {
+                UI.clipboardWritePending = false;
             });
         }
 
