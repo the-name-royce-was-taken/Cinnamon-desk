@@ -348,37 +348,7 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // The animation-frame sync keeps the sidebar field current.
-        // Ctrl+V sends that field immediately through noVNC's own send path.
-        document.addEventListener('keydown', (event) => {
-            const key = event.key ? event.key.toLowerCase() : '';
-            const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
-
-            if (!isPaste || !UI.rfb || !UI.connected) return;
-
-            // Let normal paste work in browser text fields.
-            if (event.target &&
-                (event.target.id === 'noVNC_clipboard_text' ||
-                 event.target.isContentEditable ||
-                 /^(INPUT|TEXTAREA)$/i.test(event.target.tagName))) {
-                return;
-            }
-
-            event.preventDefault();
-            event.stopImmediatePropagation();
-
-            const box = document.getElementById('noVNC_clipboard_text');
-            if (!box) {
-                Log.Warn("Clipboard sidebar field is unavailable.");
-                return;
-            }
-
-            // Do not wait for navigator.clipboard.readText() here: it can
-            // reject or hang despite the clipboard field already being fresh.
-            UI.clipboardSend();
-            Log.Debug("Ctrl+V sent sidebar clipboard: " +
-                      box.value.length + " characters");
-        }, true);
+        // Let noVNC handle keyboard shortcuts, including Ctrl+V.
 
         // A browser context-menu Paste produces a paste event. Read the
         // text supplied by that user action and send the shared variable
