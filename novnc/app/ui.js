@@ -348,9 +348,9 @@ const UI = {
             clipboardBox.addEventListener('change', UI.clipboardSend);
         }
 
-        // Read the computer clipboard as part of the actual Ctrl+V
-        // user action, then send that exact text to the Linux desktop.
-        document.addEventListener('keydown', async (event) => {
+        // The animation-frame sync keeps the sidebar field current.
+        // Ctrl+V sends that field immediately through noVNC's own send path.
+        document.addEventListener('keydown', (event) => {
             const key = event.key ? event.key.toLowerCase() : '';
             const isPaste = (event.ctrlKey || event.metaKey) && key === 'v';
 
@@ -367,31 +367,17 @@ const UI = {
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            if (!navigator.clipboard || !navigator.clipboard.readText) {
-                Log.Warn("Browser clipboard reading is unavailable.");
+            const box = document.getElementById('noVNC_clipboard_text');
+            if (!box) {
+                Log.Warn("Clipboard sidebar field is unavailable.");
                 return;
             }
 
-            try {
-                // This read is tied to the user's Ctrl+V gesture, which is
-                // permitted where background clipboard polling is blocked.
-                const text = await navigator.clipboard.readText();
-                if (!UI.rfb || !UI.connected) return;
-
-                // Put the text into the noVNC clipboard sidebar field,
-                // then let the sidebar's own send handler forward it to Linux.
-                const box = document.getElementById('noVNC_clipboard_text');
-                if (box) {
-                    box.value = text;
-                    UI.clipboardSend();
-                } else {
-                    Log.Warn("Clipboard sidebar field is unavailable.");
-                }
-                Log.Debug("Computer clipboard sent through sidebar: " +
-                          text.length + " characters");
-            } catch (err) {
-                Log.Warn("Could not read computer clipboard on paste: " + err);
-            }
+            // Do not wait for navigator.clipboard.readText() here: it can
+            // reject or hang despite the clipboard field already being fresh.
+            UI.clipboardSend();
+            Log.Debug("Ctrl+V sent sidebar clipboard: " +
+                      box.value.length + " characters");
         }, true);
 
         // A browser context-menu Paste produces a paste event. Read the
