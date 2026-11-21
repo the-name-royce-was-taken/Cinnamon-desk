@@ -1021,12 +1021,8 @@ const UI = {
 
             UI.clipboardSyncFrame = window.requestAnimationFrame(updateClipboardBox);
 
-            // Send the current sidebar clipboard contents to VNC every frame.
-            // This keeps the VNC clipboard continuously refreshed.
-            if (UI.rfb) {
-                UI.clipboardSend();
-            }
-
+            // Clipboard reads happen continuously, but only send a VNC
+            // clipboard packet when the computer clipboard actually changes.
             if (UI.clipboardReadInProgress || UI.clipboardWritePending ||
                 !navigator.clipboard || !navigator.clipboard.readText) {
                 return;
@@ -1036,10 +1032,14 @@ const UI = {
             navigator.clipboard.readText().then((text) => {
                 if (!UI.connected || UI.clipboardWritePending) return;
 
-                // Keep the sidebar field as the authoritative noVNC clipboard.
+                // Update the sidebar and send only when the clipboard changes.
                 const box = document.getElementById('noVNC_clipboard_text');
-                if (box && box.value !== text) box.value = text;
-                UI.clipboardText = text;
+                if (box && box.value !== text) {
+                    box.value = text;
+                    UI.clipboardSend();
+                } else {
+                    UI.clipboardText = text;
+                }
             }).catch(() => {
                 // Clipboard reads can be denied until the browser grants access.
                 // Retry on the next animation frame without blocking the UI.
