@@ -25,6 +25,9 @@ const UI = {
     connected: false,
     desktopName: "",
     clipboardText: "",
+    clipboardSyncTimer: null,
+    clipboardReadInProgress: false,
+    clipboardWritePendingUntil: 0,
 
     statusTimeout: null,
     hideKeyboardTimeout: null,
@@ -372,7 +375,7 @@ const UI = {
             navigator.clipboard.readText().then((text) => {
                 if (!UI.rfb || !UI.connected) return;
 
-                // The shared variable is the source used for Linux paste.
+                // Refresh the shared variable, then paste that exact value.
                 UI.clipboardText = text;
                 const box = document.getElementById('noVNC_clipboard_text');
                 if (box) box.value = UI.clipboardText;
@@ -1042,13 +1045,60 @@ const UI = {
         }
     },
 
+    // Keep the shared clipboard variable synchronized with the computer.
+    startClipboardSync() {
+        if (UI.clipboardSyncTimer !== null) return;
+
+        const sync = async () => {
+            if (!UI.connected || !UI.rfb || document.hidden ||
+                !document.hasFocus() ||
+                Date.now() < UI.clipboardWritePendingUntil ||
+                UI.clipboardReadInProgress ||
+                !navigator.clipboard || !navigator.clipboard.readText) {
+                return;
+            }
+
+            UI.clipboardReadInProgress = true;
+            try {
+                const text = await navigator.clipboard.readText();
+                if (!UI.connected || !UI.rfb ||
+                    Date.now() < UI.clipboardWritePendingUntil) return;
+
+                if (text !== UI.clipboardText) {
+                    UI.clipboardText = text;
+                    const box = document.getElementById('noVNC_clipboard_text');
+                    if (box) box.value = text;
+                    Log.Debug("Computer clipboard synchronized: " +
+                              text.length + " characters");
+                }
+            } catch (err) {
+                Log.Warn("Computer clipboard sync is unavailable: " + err);
+            } finally {
+                UI.clipboardReadInProgress = false;
+            }
+        };
+
+        // Read immediately, then check once per second while connected.
+        sync();
+        UI.clipboardSyncTimer = setInterval(sync, 1000);
+    },
+
+    stopClipboardSync() {
+        if (UI.clipboardSyncTimer !== null) {
+            clearInterval(UI.clipboardSyncTimer);
+            UI.clipboardSyncTimer = null;
+        }
+        UI.clipboardReadInProgress = false;
+    },
+
     clipboardReceive(e) {
         const text = e.detail.text;
 
         Log.Debug(">> UI.clipboardReceive: " + text.substr(0, 40) + "...");
 
-        // A copy inside Linux updates the shared variable, then the computer.
+        // A copy inside Linux takes priority and updates the computer.
         UI.clipboardText = text;
+        UI.clipboardWritePendingUntil = Date.now() + 2000;
         const box = document.getElementById('noVNC_clipboard_text');
         if (box) box.value = UI.clipboardText;
 
@@ -1198,6 +1248,7 @@ const UI = {
     connectFinished(e) {
         UI.connected = true;
         UI.inhibitReconnect = false;
+        UI.startClipboardSync();
 
         let msg;
         if (UI.getSetting('encrypt')) {
@@ -1220,6 +1271,7 @@ const UI = {
         // the server, we need to do it here as well since
         // UI.disconnect() won't be used in those cases.
         UI.connected = false;
+        UI.stopClipboardSync();
 
         UI.rfb = undefined;
 
