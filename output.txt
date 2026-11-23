@@ -1,4 +1,4 @@
-[1] 748
+[1] 705
 _XSERVTransmkdir: Owner of /tmp/.X11-unix should be set to root
 
 Xvnc TigerVNC 1.13.1 - built Jan  1 1980 00:00:00
@@ -7,15 +7,13 @@ See https://www.tigervnc.org for information on TigerVNC.
 Underlying X server release 12101013
 
 
-Sun Nov 22 10:24:31 2026
+Mon Nov 23 10:51:30 2026
  vncext:      VNC extension running!
  vncext:      Listening for VNC connections on all interface(s), port 5900
  vncext:      created VNC server for screen 0
-[mi] mieq: warning: overriding existing handler (nil) with 0x5c3d60 for event 2
-[mi] mieq: warning: overriding existing handler (nil) with 0x5c3d60 for event 3
-[2] 752
-[3] 753
-[4] 758
+[2] 719
+[3] 720
+[4] 725
 Failed to read: session.configVersion
 Setting default value
 Failed to read: session.configVersion
@@ -52,6 +50,13 @@ Failed to read: session.screen0.slit.placement
 Setting default value
 Failed to read: session.screen0.slit.direction
 Setting default value
+[5] 730
+[6] 731
+[7] 732
+[8] 733
+noVNC and audio WebSocket server listening on 8080
+[mi] mieq: warning: overriding existing handler (nil) with 0x5c3d60 for event 2
+[mi] mieq: warning: overriding existing handler (nil) with 0x5c3d60 for event 3
 Failed to read: session.ignoreBorder
 Setting default value
 Failed to read: session.forcePseudoTransparency
@@ -1308,6 +1313,66 @@ Keys: Invalid key/modifier on line 2264): OnDesktop Mouse2 :WorkspaceMenu
 Keys: Invalid key/modifier on line 2265): OnDesktop Mouse3 :RootMenu
 Keys: Invalid key/modifier on line 2266): OnDesktop Mouse4 :NextWorkspace
 Keys: Invalid key/modifier on line 2267): OnDesktop Mouse5 :PrevWorkspace
+Keys: Invalid key/modifier on line 2272): OnTitlebar Mouse1 :MacroCmd {Focus} {Raise} {ActivateTab}
+Keys: Invalid key/modifier on line 2274): OnTitlebar Move1 :StartMoving
+Keys: Invalid key/modifier on line 2275): OnLeftGrip Move1 :StartResizing bottomleft
+Keys: Invalid key/modifier on line 2276): OnRightGrip Move1 :StartResizing bottomright
+Keys: Invalid key/modifier on line 2277): OnWindowBorder Move1 :StartMoving
+Keys: Invalid key/modifier on line 2280): OnTitlebar Mouse2 :StartTabbing
+Keys: Invalid key/modifier on line 2283): OnTitlebar Double Mouse1 :Shade
+Keys: Invalid key/modifier on line 2284): OnTitlebar Mouse3 :WindowMenu
+Keys: Invalid key/modifier on line 2287): OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+Keys: Invalid key/modifier on line 2288): OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+Keys: Invalid key/modifier on line 2291): OnDesktop Mouse1 :HideMenus
+Keys: Invalid key/modifier on line 2292): OnDesktop Mouse2 :WorkspaceMenu
+Keys: Invalid key/modifier on line 2293): OnDesktop Mouse3 :RootMenu
+Keys: Invalid key/modifier on line 2294): OnDesktop Mouse4 :NextWorkspace
+Keys: Invalid key/modifier on line 2295): OnDesktop Mouse5 :PrevWorkspace
+Keys: Invalid key/modifier on line 2300): OnTitlebar Mouse1 :MacroCmd {Focus} {Raise} {ActivateTab}
+Keys: Invalid key/modifier on line 2302): OnTitlebar Move1 :StartMoving
+Keys: Invalid key/modifier on line 2303): OnLeftGrip Move1 :StartResizing bottomleft
+Keys: Invalid key/modifier on line 2304): OnRightGrip Move1 :StartResizing bottomright
+Keys: Invalid key/modifier on line 2305): OnWindowBorder Move1 :StartMoving
+Keys: Invalid key/modifier on line 2308): OnTitlebar Mouse2 :StartTabbing
+Keys: Invalid key/modifier on line 2311): OnTitlebar Double Mouse1 :Shade
+Keys: Invalid key/modifier on line 2312): OnTitlebar Mouse3 :WindowMenu
+Keys: Invalid key/modifier on line 2315): OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+Keys: Invalid key/modifier on line 2316): OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+Keys: Invalid key/modifier on line 2319): OnDesktop Mouse1 :HideMenus
+Keys: Invalid key/modifier on line 2320): OnDesktop Mouse2 :WorkspaceMenu
+Keys: Invalid key/modifier on line 2321): OnDesktop Mouse3 :RootMenu
+Keys: Invalid key/modifier on line 2322): OnDesktop Mouse4 :NextWorkspace
+Keys: Invalid key/modifier on line 2323): OnDesktop Mouse5 :PrevWorkspace
+Keys: Invalid key/modifier on line 2328): OnTitlebar Mouse1 :MacroCmd {Focus} {Raise} {ActivateTab}
+Keys: Invalid key/modifier on line 2330): OnTitlebar Move1 :StartMoving
+Keys: Invalid key/modifier on line 2331): OnLeftGrip Move1 :StartResizing bottomleft
+Keys: Invalid key/modifier on line 2332): OnRightGrip Move1 :StartResizing bottomright
+Keys: Invalid key/modifier on line 2333): OnWindowBorder Move1 :StartMoving
+Keys: Invalid key/modifier on line 2336): OnTitlebar Mouse2 :StartTabbing
+Keys: Invalid key/modifier on line 2339): OnTitlebar Double Mouse1 :Shade
+Keys: Invalid key/modifier on line 2340): OnTitlebar Mouse3 :WindowMenu
+Keys: Invalid key/modifier on line 2343): OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+Keys: Invalid key/modifier on line 2344): OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+Keys: Invalid key/modifier on line 2347): OnDesktop Mouse1 :HideMenus
+Keys: Invalid key/modifier on line 2348): OnDesktop Mouse2 :WorkspaceMenu
+Keys: Invalid key/modifier on line 2349): OnDesktop Mouse3 :RootMenu
+Keys: Invalid key/modifier on line 2350): OnDesktop Mouse4 :NextWorkspace
+Keys: Invalid key/modifier on line 2351): OnDesktop Mouse5 :PrevWorkspace
+Keys: Invalid key/modifier on line 2356): OnTitlebar Mouse1 :MacroCmd {Focus} {Raise} {ActivateTab}
+Keys: Invalid key/modifier on line 2358): OnTitlebar Move1 :StartMoving
+Keys: Invalid key/modifier on line 2359): OnLeftGrip Move1 :StartResizing bottomleft
+Keys: Invalid key/modifier on line 2360): OnRightGrip Move1 :StartResizing bottomright
+Keys: Invalid key/modifier on line 2361): OnWindowBorder Move1 :StartMoving
+Keys: Invalid key/modifier on line 2364): OnTitlebar Mouse2 :StartTabbing
+Keys: Invalid key/modifier on line 2367): OnTitlebar Double Mouse1 :Shade
+Keys: Invalid key/modifier on line 2368): OnTitlebar Mouse3 :WindowMenu
+Keys: Invalid key/modifier on line 2371): OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+Keys: Invalid key/modifier on line 2372): OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+Keys: Invalid key/modifier on line 2375): OnDesktop Mouse1 :HideMenus
+Keys: Invalid key/modifier on line 2376): OnDesktop Mouse2 :WorkspaceMenu
+Keys: Invalid key/modifier on line 2377): OnDesktop Mouse3 :RootMenu
+Keys: Invalid key/modifier on line 2378): OnDesktop Mouse4 :NextWorkspace
+Keys: Invalid key/modifier on line 2379): OnDesktop Mouse5 :PrevWorkspace
 Failed to read: session.screen0.opaqueMove
 Setting default value
 Failed to read: session.screen0.maxIgnoreIncrement
@@ -1490,70 +1555,697 @@ Failed to read: session.screen0.iconbar.usePixmap
 Setting default value
 Failed to read: session.screen0.strftimeFormat
 Setting default value
-[2]   Done                    ( echo "Starting optional desktop audio..."; PA="/nix/store/pn9glkalcj7i5p549dpsl1c46pkb13xr-pulseaudio-17.0"; PACTL="$PA/bin/pactl"; attempt=0; until env -u LD_LIBRARY_PATH "$PACTL" info > /dev/null 2>&1; do
-    attempt=$((attempt + 1)); if [ "$attempt" -ge 20 ]; then
-        echo "PulseAudio did not become available. VNC will continue without audio."; exit 0;
-    fi; sleep 1;
-done; if ! env -u LD_LIBRARY_PATH "$PACTL" list short sinks 2> /dev/null | awk '$2 == "desktop_audio" { found=1 } END { exit !found }'; then
-    env -u LD_LIBRARY_PATH "$PACTL" load-module module-null-sink sink_name=desktop_audio rate=48000 channels=2 sink_properties=device.description=Desktop_Audio > /tmp/audio-sink.log 2>&1 || true;
-fi; if env -u LD_LIBRARY_PATH "$PACTL" list short sinks 2> /dev/null | awk '$2 == "desktop_audio" { found=1 } END { exit !found }'; then
-    env -u LD_LIBRARY_PATH "$PACTL" set-default-sink desktop_audio > /tmp/audio-default.log 2>&1 || true; env -u LD_LIBRARY_PATH "$PACTL" set-sink-mute desktop_audio 0 > /tmp/audio-unmute.log 2>&1 || true; echo "Virtual audio output desktop_audio is ready.";
-else
-    echo "Could not create virtual audio output. VNC will continue without audio.";
-fi ) > /tmp/audio-setup.log 2>&1
-[5] 780
-[6] 781
-[7] 782
-[8] 783
+MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+glx: failed to create drisw screen
+MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+glx: failed to create drisw screen
+
+(xfce4-terminal:732): xfce4-terminal-WARNING **: 10:51:34.738: Failed to initialize Xfconf: Cannot spawn a message bus without a machine-id: Invalid machine ID in /nix/store/c2v6ycn0sjcpx9ww8x7j4ima6xnpssry-glib-2.80.2/var/lib/dbus/machine-id or /etc/machine-id
+
+** (pcmanfm:730): WARNING **: 10:51:34.741: The directory '~/Templates' doesn't exist, ignoring it
+
+(xfce4-terminal:732): xfce4-terminal-WARNING **: 10:51:34.768: Failed to connect to session manager: Failed to connect to the session manager: SESSION_MANAGER environment variable not defined
 Failed to read: session.screen0.titlebar.left
 Setting default value
 Failed to read: session.screen0.titlebar.right
 Setting default value
-MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
-MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
-glx: failed to create drisw screen
-glx: failed to create drisw screen
+[733:796:1123/105139.349328:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:799:1123/105139.541661:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:799:1123/105139.541717:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:796:1123/105139.586749:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.586767:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.586775:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.586780:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.664571:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.664619:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:829:1123/105139.704314:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.888804:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105139.888856:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:733:1123/105140.031353:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[733:802:1123/105140.032423:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:843:1123/105140.199328:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:843:1123/105140.200211:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:843:1123/105140.200260:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:843:1123/105140.200275:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:843:1123/105140.200287:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[733:733:1123/105140.203188:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[733:804:1123/105140.203604:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:733:1123/105140.205163:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[733:794:1123/105140.205243:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:733:1123/105140.205587:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[733:804:1123/105140.205788:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:733:1123/105140.205853:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
 
-(xfce4-terminal:782): xfce4-terminal-WARNING **: 10:24:34.122: Failed to initialize Xfconf: Cannot spawn a message bus without a machine-id: Invalid machine ID in /nix/store/c2v6ycn0sjcpx9ww8x7j4ima6xnpssry-glib-2.80.2/var/lib/dbus/machine-id or /etc/machine-id
-
-** (pcmanfm:780): WARNING **: 10:24:34.139: The directory '~/Templates' doesn't exist, ignoring it
-
-(xfce4-terminal:782): xfce4-terminal-WARNING **: 10:24:34.151: Failed to connect to session manager: Failed to connect to the session manager: SESSION_MANAGER environment variable not defined
-noVNC and audio WebSocket server listening on 8080
-[783:821:1122/102434.239828:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:828:1122/102434.310231:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:828:1122/102434.310282:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:821:1122/102434.324907:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.324940:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.324952:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.324961:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.373887:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.374799:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:818:1122/102434.405519:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.445808:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:821:1122/102434.445838:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:783:1122/102434.541443:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-[783:818:1122/102434.541701:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:905:1122/102434.562356:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:905:1122/102434.562388:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:905:1122/102434.562441:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:905:1122/102434.562529:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:905:1122/102434.562552:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
-[783:783:1122/102434.565284:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-[783:818:1122/102434.565393:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:783:1122/102434.572538:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-[783:818:1122/102434.572606:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:783:1122/102434.574815:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-[783:832:1122/102434.574943:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-[783:783:1122/102434.575994:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-
-Sun Nov 22 10:25:05 2026
- Connections: accepted: 127.0.0.1::59746
+Mon Nov 23 10:52:04 2026
+ Connections: accepted: 127.0.0.1::51968
  SConnection: Client needs protocol version 3.8
+VNC read wait: 317.1 ms
  SConnection: Client requests security type None(1)
  VNCSConnST:  Server default pixel format depth 24 (32bpp) little-endian rgb888
+VNC read wait: 299.2 ms
+VNC read wait: 318.1 ms
+
+Mon Nov 23 10:52:05 2026
  VNCSConnST:  Client pixel format depth 24 (32bpp) little-endian bgr888
-VNC traffic: 141625 bytes, 44 chunks in 2 seconds, largest gap: 439.2 ms
-VNC traffic: 345147 bytes, 188 chunks in 2 seconds, largest gap: 79.6 ms
-VNC traffic: 438073 bytes, 251 chunks in 2 seconds, largest gap: 82.7 ms
-VNC traffic: 516454 bytes, 229 chunks in 2 seconds, largest gap: 60.4 ms
+VNC read wait: 459.2 ms
+VNC read wait: 217.4 ms
+VNC read wait: 263.6 ms
+VNC read wait: 463.4 ms
+VNC traffic: 138331 bytes, 43 chunks in 2 seconds, largest gap: 463.5 ms
+VNC read wait: 171.0 ms
+VNC read wait: 156.9 ms
+VNC read wait: 102.2 ms
+VNC read wait: 230.6 ms
+VNC read wait: 310.0 ms
+VNC read wait: 191.3 ms
+VNC read wait: 450.4 ms
+VNC traffic: 83105 bytes, 45 chunks in 2 seconds, largest gap: 450.5 ms
+VNC read wait: 415.4 ms
+VNC read wait: 248.7 ms
+VNC read wait: 249.8 ms
+VNC read wait: 151.8 ms
+VNC read wait: 243.6 ms
+VNC read wait: 229.7 ms
+VNC read wait: 243.7 ms
+VNC traffic: 680729 bytes, 183 chunks in 2 seconds, largest gap: 415.6 ms
+VNC read wait: 193.0 ms
+VNC read wait: 261.0 ms
+VNC read wait: 500.3 ms
+VNC read wait: 501.9 ms
+VNC read wait: 500.4 ms
+VNC traffic: 159234 bytes, 47 chunks in 2 seconds, largest gap: 502.0 ms
+VNC read wait: 501.3 ms
+VNC read wait: 500.9 ms
+VNC read wait: 501.0 ms
+VNC read wait: 501.3 ms
+VNC traffic: 208 bytes, 4 chunks in 2 seconds, largest gap: 501.4 ms
+VNC read wait: 500.7 ms
+VNC read wait: 501.0 ms
+VNC read wait: 501.0 ms
+VNC read wait: 503.3 ms
+VNC traffic: 208 bytes, 4 chunks in 2 seconds, largest gap: 503.4 ms
+VNC read wait: 295.9 ms
+VNC read wait: 128.6 ms
+VNC read wait: 382.7 ms
+VNC read wait: 263.5 ms
+VNC traffic: 180102 bytes, 114 chunks in 2 seconds, largest gap: 382.8 ms
+VNC read wait: 237.1 ms
+VNC read wait: 491.5 ms
+VNC read wait: 171.2 ms
+VNC read wait: 234.5 ms
+VNC traffic: 264204 bytes, 136 chunks in 2 seconds, largest gap: 491.6 ms
+VNC read wait: 195.7 ms
+VNC read wait: 246.6 ms
+VNC read wait: 122.2 ms
+VNC read wait: 100.6 ms
+VNC read wait: 193.2 ms
+VNC read wait: 111.6 ms
+VNC read wait: 103.6 ms
+VNC read wait: 192.4 ms
+VNC read wait: 254.6 ms
+VNC traffic: 516686 bytes, 150 chunks in 2 seconds, largest gap: 254.6 ms
+VNC read wait: 251.0 ms
+VNC read wait: 277.0 ms
+VNC read wait: 130.5 ms
+VNC read wait: 190.1 ms
+VNC read wait: 135.6 ms
+VNC read wait: 145.6 ms
+VNC read wait: 183.4 ms
+VNC traffic: 810304 bytes, 223 chunks in 2 seconds, largest gap: 277.1 ms
+VNC read wait: 179.4 ms
+VNC read wait: 117.4 ms
+VNC read wait: 160.5 ms
+VNC read wait: 199.0 ms
+VNC read wait: 155.9 ms
+VNC read wait: 234.1 ms
+VNC read wait: 131.0 ms
+VNC read wait: 112.7 ms
+VNC traffic: 832969 bytes, 214 chunks in 2 seconds, largest gap: 234.2 ms
+VNC read wait: 142.3 ms
+VNC read wait: 137.8 ms
+VNC read wait: 107.8 ms
+VNC traffic: 979795 bytes, 284 chunks in 2 seconds, largest gap: 142.3 ms
+VNC read wait: 210.3 ms
+VNC traffic: 1028770 bytes, 344 chunks in 2 seconds, largest gap: 210.4 ms
+[733:796:1123/105230.916227:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.916901:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.917782:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.918198:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.918459:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.918709:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.918886:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.919193:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.920865:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.920891:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.920911:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.920917:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.920922:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.920926:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.922930:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.922988:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105230.923010:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+libpng warning: iCCP: known incorrect sRGB profile
+[733:796:1123/105231.030673:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105231.030714:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC read wait: 119.6 ms
+VNC traffic: 1402503 bytes, 390 chunks in 2 seconds, largest gap: 119.7 ms
+VNC traffic: 1474695 bytes, 409 chunks in 2 seconds, largest gap: 76.4 ms
+VNC traffic: 1701534 bytes, 453 chunks in 2 seconds, largest gap: 57.0 ms
+VNC traffic: 1541682 bytes, 411 chunks in 2 seconds, largest gap: 41.0 ms
+VNC read wait: 191.5 ms
+VNC traffic: 1645325 bytes, 436 chunks in 2 seconds, largest gap: 191.6 ms
+VNC traffic: 1288287 bytes, 350 chunks in 2 seconds, largest gap: 99.7 ms
+VNC traffic: 1383190 bytes, 369 chunks in 2 seconds, largest gap: 67.1 ms
+Found desktop audio source: null.monitor
+Starting audio capture: null.monitor
+VNC traffic: 1533254 bytes, 399 chunks in 2 seconds, largest gap: 77.9 ms
+VNC traffic: 2131818 bytes, 551 chunks in 2 seconds, largest gap: 63.1 ms
+VNC traffic: 2363438 bytes, 598 chunks in 2 seconds, largest gap: 43.0 ms
+VNC read wait: 312.1 ms
+VNC read wait: 102.4 ms
+VNC read wait: 112.2 ms
+VNC read wait: 110.9 ms
+VNC read wait: 180.6 ms
+VNC read wait: 180.5 ms
+VNC read wait: 152.4 ms
+VNC traffic: 1269897 bytes, 334 chunks in 2 seconds, largest gap: 312.1 ms
+VNC read wait: 136.9 ms
+VNC read wait: 152.0 ms
+VNC read wait: 138.1 ms
+VNC read wait: 100.3 ms
+VNC traffic: 1320428 bytes, 367 chunks in 2 seconds, largest gap: 152.0 ms
+VNC traffic: 1149750 bytes, 310 chunks in 2 seconds, largest gap: 44.3 ms
+VNC read wait: 105.9 ms
+VNC traffic: 1385706 bytes, 365 chunks in 2 seconds, largest gap: 105.9 ms
+VNC traffic: 1494145 bytes, 395 chunks in 2 seconds, largest gap: 69.3 ms
+VNC traffic: 1281588 bytes, 344 chunks in 2 seconds, largest gap: 37.1 ms
+VNC traffic: 1279265 bytes, 359 chunks in 2 seconds, largest gap: 50.4 ms
+[733:796:1123/105305.612990:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105305.613046:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105305.613054:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC traffic: 1526841 bytes, 439 chunks in 2 seconds, largest gap: 60.1 ms
+VNC traffic: 1336406 bytes, 359 chunks in 2 seconds, largest gap: 38.3 ms
+VNC read wait: 111.2 ms
+VNC traffic: 1178838 bytes, 315 chunks in 2 seconds, largest gap: 111.3 ms
+VNC traffic: 1141986 bytes, 312 chunks in 2 seconds, largest gap: 42.0 ms
+VNC traffic: 1296410 bytes, 352 chunks in 2 seconds, largest gap: 39.4 ms
+VNC traffic: 1283002 bytes, 353 chunks in 2 seconds, largest gap: 35.7 ms
+VNC traffic: 1203382 bytes, 319 chunks in 2 seconds, largest gap: 36.6 ms
+VNC traffic: 1208842 bytes, 326 chunks in 2 seconds, largest gap: 41.4 ms
+VNC traffic: 1152236 bytes, 309 chunks in 2 seconds, largest gap: 39.3 ms
+VNC traffic: 1272604 bytes, 343 chunks in 2 seconds, largest gap: 40.7 ms
+VNC traffic: 1230934 bytes, 323 chunks in 2 seconds, largest gap: 42.4 ms
+VNC traffic: 1202010 bytes, 309 chunks in 2 seconds, largest gap: 41.5 ms
+VNC traffic: 1223575 bytes, 321 chunks in 2 seconds, largest gap: 38.4 ms
+VNC traffic: 1188777 bytes, 318 chunks in 2 seconds, largest gap: 45.5 ms
+VNC traffic: 1144245 bytes, 309 chunks in 2 seconds, largest gap: 71.5 ms
+VNC traffic: 1283934 bytes, 349 chunks in 2 seconds, largest gap: 70.8 ms
+[733:796:1123/105339.346686:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105339.347844:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105339.347884:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105339.707713:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105339.707741:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105339.707747:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC traffic: 1374876 bytes, 379 chunks in 2 seconds, largest gap: 67.2 ms
+VNC read wait: 123.5 ms
+VNC traffic: 1340660 bytes, 386 chunks in 2 seconds, largest gap: 123.5 ms
+VNC read wait: 118.4 ms
+VNC traffic: 1386464 bytes, 408 chunks in 2 seconds, largest gap: 118.5 ms
+VNC read wait: 333.1 ms
+VNC read wait: 236.9 ms
+VNC traffic: 501238 bytes, 212 chunks in 2 seconds, largest gap: 333.1 ms
+VNC read wait: 100.9 ms
+VNC read wait: 120.7 ms
+VNC read wait: 102.5 ms
+VNC traffic: 174413 bytes, 132 chunks in 2 seconds, largest gap: 120.8 ms
+VNC read wait: 216.4 ms
+VNC read wait: 213.5 ms
+VNC read wait: 171.3 ms
+VNC read wait: 168.6 ms
+VNC read wait: 131.5 ms
+VNC read wait: 134.9 ms
+VNC read wait: 118.8 ms
+VNC read wait: 108.7 ms
+VNC traffic: 55535 bytes, 75 chunks in 2 seconds, largest gap: 216.5 ms
+VNC read wait: 108.5 ms
+VNC read wait: 2420.9 ms
+VNC traffic: 28443 bytes, 25 chunks in 2 seconds, largest gap: 2421.0 ms
+VNC read wait: 199.5 ms
+VNC read wait: 198.5 ms
+VNC read wait: 196.7 ms
+VNC read wait: 126.2 ms
+VNC read wait: 124.1 ms
+VNC read wait: 5805.8 ms
+VNC traffic: 73068 bytes, 60 chunks in 2 seconds, largest gap: 5805.9 ms
+VNC read wait: 199.2 ms
+VNC read wait: 199.6 ms
+VNC read wait: 198.8 ms
+VNC read wait: 199.4 ms
+VNC read wait: 215.1 ms
+VNC read wait: 200.7 ms
+VNC read wait: 268.9 ms
+VNC read wait: 1408.2 ms
+VNC traffic: 21371 bytes, 14 chunks in 2 seconds, largest gap: 1408.3 ms
+VNC read wait: 454.5 ms
+VNC read wait: 23280.5 ms
+VNC traffic: 20313 bytes, 7 chunks in 2 seconds, largest gap: 23280.5 ms
+VNC read wait: 180.0 ms
+VNC read wait: 226.9 ms
+VNC read wait: 265.3 ms
+VNC read wait: 171.7 ms
+VNC read wait: 188.0 ms
+VNC read wait: 126.5 ms
+VNC read wait: 178.0 ms
+VNC read wait: 142.1 ms
+VNC traffic: 518864 bytes, 154 chunks in 2 seconds, largest gap: 265.4 ms
+[733:796:1123/105429.160765:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105429.160799:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105429.160807:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105429.292635:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105429.292680:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC read wait: 235.8 ms
+VNC read wait: 186.5 ms
+VNC read wait: 131.1 ms
+VNC traffic: 1505245 bytes, 422 chunks in 2 seconds, largest gap: 235.8 ms
+VNC traffic: 1801391 bytes, 490 chunks in 2 seconds, largest gap: 74.4 ms
+VNC read wait: 107.7 ms
+VNC traffic: 1112789 bytes, 366 chunks in 2 seconds, largest gap: 107.8 ms
+VNC read wait: 210.7 ms
+VNC traffic: 412229 bytes, 248 chunks in 2 seconds, largest gap: 210.8 ms
+[733:796:1123/105437.151615:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105437.151685:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105437.151698:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105437.246852:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105437.246888:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC read wait: 246.5 ms
+VNC read wait: 211.1 ms
+VNC read wait: 236.2 ms
+VNC read wait: 242.3 ms
+VNC read wait: 155.5 ms
+VNC read wait: 147.5 ms
+VNC read wait: 130.6 ms
+VNC traffic: 770188 bytes, 218 chunks in 2 seconds, largest gap: 246.5 ms
+VNC read wait: 127.8 ms
+VNC read wait: 124.1 ms
+VNC read wait: 122.5 ms
+VNC read wait: 460.1 ms
+VNC read wait: 162.4 ms
+VNC read wait: 149.8 ms
+VNC traffic: 908235 bytes, 246 chunks in 2 seconds, largest gap: 460.1 ms
+VNC read wait: 148.2 ms
+VNC read wait: 308.0 ms
+VNC traffic: 1405178 bytes, 385 chunks in 2 seconds, largest gap: 308.0 ms
+VNC read wait: 169.0 ms
+[733:796:1123/105443.462863:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105443.462915:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105443.462924:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC read wait: 241.5 ms
+VNC read wait: 243.3 ms
+VNC read wait: 150.9 ms
+VNC read wait: 128.1 ms
+VNC read wait: 104.1 ms
+VNC read wait: 110.1 ms
+VNC traffic: 851050 bytes, 237 chunks in 2 seconds, largest gap: 243.3 ms
+VNC read wait: 133.1 ms
+VNC read wait: 105.4 ms
+VNC read wait: 111.7 ms
+VNC traffic: 960104 bytes, 272 chunks in 2 seconds, largest gap: 133.1 ms
+VNC read wait: 117.8 ms
+VNC read wait: 143.4 ms
+VNC traffic: 1081929 bytes, 330 chunks in 2 seconds, largest gap: 143.4 ms
+VNC read wait: 974.0 ms
+VNC read wait: 402.8 ms
+VNC read wait: 488.7 ms
+VNC traffic: 135531 bytes, 38 chunks in 2 seconds, largest gap: 974.1 ms
+VNC read wait: 799.9 ms
+VNC read wait: 304.6 ms
+VNC read wait: 882.3 ms
+VNC traffic: 98336 bytes, 30 chunks in 2 seconds, largest gap: 882.3 ms
+VNC read wait: 618.4 ms
+VNC read wait: 210.1 ms
+VNC read wait: 199.5 ms
+VNC read wait: 251.1 ms
+VNC read wait: 236.3 ms
+VNC read wait: 143.0 ms
+VNC traffic: 338398 bytes, 95 chunks in 2 seconds, largest gap: 618.5 ms
+VNC read wait: 769.3 ms
+[733:796:1123/105456.136507:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105456.136541:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105456.136549:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105456.217032:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105456.217068:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC read wait: 220.5 ms
+VNC read wait: 176.7 ms
+VNC read wait: 175.8 ms
+VNC read wait: 180.9 ms
+VNC read wait: 148.5 ms
+VNC read wait: 242.8 ms
+VNC traffic: 372860 bytes, 105 chunks in 2 seconds, largest gap: 769.4 ms
+VNC read wait: 156.7 ms
+VNC read wait: 177.4 ms
+VNC read wait: 166.3 ms
+VNC read wait: 145.8 ms
+VNC read wait: 146.2 ms
+VNC read wait: 124.3 ms
+VNC read wait: 122.1 ms
+VNC traffic: 742754 bytes, 216 chunks in 2 seconds, largest gap: 177.4 ms
+VNC read wait: 488.5 ms
+VNC read wait: 234.7 ms
+VNC read wait: 121.4 ms
+VNC read wait: 125.2 ms
+VNC read wait: 111.7 ms
+VNC traffic: 631096 bytes, 177 chunks in 2 seconds, largest gap: 488.6 ms
+VNC read wait: 114.7 ms
+VNC read wait: 137.1 ms
+VNC read wait: 145.0 ms
+VNC read wait: 143.7 ms
+[733:796:1123/105503.523508:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105503.523540:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[733:796:1123/105503.523545:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+VNC read wait: 120.3 ms
+VNC traffic: 834247 bytes, 237 chunks in 2 seconds, largest gap: 145.1 ms
+VNC read wait: 139.3 ms
+VNC read wait: 114.1 ms
+VNC read wait: 290.4 ms
+VNC read wait: 122.4 ms
+VNC traffic: 963227 bytes, 271 chunks in 2 seconds, largest gap: 290.4 ms
+VNC read wait: 134.6 ms
+VNC read wait: 115.8 ms
+VNC read wait: 145.5 ms
+VNC read wait: 132.7 ms
+VNC read wait: 128.5 ms
+VNC traffic: 841805 bytes, 235 chunks in 2 seconds, largest gap: 145.5 ms
+VNC read wait: 125.3 ms
+VNC read wait: 113.2 ms
+VNC read wait: 148.7 ms
+VNC read wait: 103.8 ms
+VNC read wait: 109.5 ms
+VNC read wait: 344.3 ms
+VNC traffic: 846319 bytes, 242 chunks in 2 seconds, largest gap: 344.4 ms
+VNC read wait: 204.1 ms
+VNC read wait: 160.1 ms
+VNC read wait: 157.9 ms
+VNC read wait: 149.3 ms
+VNC read wait: 290.0 ms
+VNC read wait: 181.3 ms
+VNC read wait: 169.1 ms
+VNC read wait: 158.6 ms
+VNC traffic: 667574 bytes, 184 chunks in 2 seconds, largest gap: 290.1 ms
+VNC read wait: 273.2 ms
+VNC read wait: 185.8 ms
+VNC read wait: 138.5 ms
+VNC read wait: 142.0 ms
+VNC read wait: 114.1 ms
+VNC read wait: 100.4 ms
+VNC read wait: 113.9 ms
+VNC read wait: 164.6 ms
+VNC traffic: 576143 bytes, 159 chunks in 2 seconds, largest gap: 273.3 ms
+VNC read wait: 169.4 ms
+VNC read wait: 118.4 ms
+VNC traffic: 365781 bytes, 152 chunks in 2 seconds, largest gap: 169.5 ms
+VNC read wait: 101.7 ms
+VNC read wait: 116.0 ms
+VNC read wait: 598.6 ms
+VNC read wait: 261.2 ms
+VNC read wait: 199.7 ms
+VNC traffic: 173512 bytes, 75 chunks in 2 seconds, largest gap: 598.7 ms
+VNC read wait: 192.7 ms
+VNC read wait: 180.6 ms
+VNC read wait: 143.3 ms
+VNC read wait: 162.5 ms
+VNC read wait: 247.0 ms
+VNC read wait: 253.0 ms
+VNC read wait: 222.1 ms
+VNC read wait: 431.4 ms
+VNC traffic: 38406 bytes, 27 chunks in 2 seconds, largest gap: 431.5 ms
+VNC read wait: 820.7 ms
+VNC read wait: 586.5 ms
+VNC read wait: 796.4 ms
+VNC traffic: 79181 bytes, 23 chunks in 2 seconds, largest gap: 820.8 ms
+VNC read wait: 103.3 ms
+VNC read wait: 269.3 ms
+VNC read wait: 1448.3 ms
+VNC read wait: 977.2 ms
+VNC traffic: 167035 bytes, 46 chunks in 2 seconds, largest gap: 1448.3 ms
+VNC read wait: 6708.7 ms
+VNC traffic: 2086 bytes, 1 chunks in 2 seconds, largest gap: 6708.8 ms
+VNC read wait: 342.1 ms
+VNC read wait: 1499.9 ms
+VNC read wait: 1123.2 ms
+VNC traffic: 5360 bytes, 4 chunks in 2 seconds, largest gap: 1500.0 ms
+VNC read wait: 946.4 ms
+VNC read wait: 273.6 ms
+VNC read wait: 2564.9 ms
+VNC traffic: 221816 bytes, 62 chunks in 2 seconds, largest gap: 2565.0 ms
+VNC read wait: 1549.3 ms
+VNC read wait: 1893.3 ms
+VNC traffic: 18232 bytes, 6 chunks in 2 seconds, largest gap: 1893.4 ms
+VNC read wait: 265.7 ms
+VNC read wait: 223.9 ms
+VNC read wait: 290.6 ms
+VNC read wait: 271.8 ms
+VNC read wait: 233.4 ms
+VNC read wait: 280.0 ms
+VNC read wait: 274.1 ms
+VNC read wait: 292.2 ms
+VNC traffic: 44262 bytes, 26 chunks in 2 seconds, largest gap: 292.3 ms
+VNC read wait: 260.1 ms
+VNC read wait: 227.7 ms
+VNC read wait: 224.0 ms
+VNC read wait: 212.1 ms
+VNC read wait: 239.9 ms
+VNC read wait: 294.1 ms
+VNC read wait: 246.3 ms
+VNC read wait: 242.6 ms
+VNC read wait: 228.5 ms
+VNC traffic: 25416 bytes, 25 chunks in 2 seconds, largest gap: 294.2 ms
+VNC read wait: 264.3 ms
+VNC read wait: 219.2 ms
+VNC read wait: 217.3 ms
+VNC read wait: 658.1 ms
+VNC read wait: 1383.7 ms
+VNC traffic: 28001 bytes, 20 chunks in 2 seconds, largest gap: 1383.8 ms
+VNC read wait: 3191.5 ms
+VNC traffic: 22636 bytes, 6 chunks in 2 seconds, largest gap: 3191.5 ms
+VNC read wait: 1205.6 ms
+VNC read wait: 255.6 ms
+VNC read wait: 198.7 ms
+VNC read wait: 183.8 ms
+VNC read wait: 5175.5 ms
+VNC traffic: 95423 bytes, 27 chunks in 2 seconds, largest gap: 5175.6 ms
+VNC read wait: 529.3 ms
+VNC read wait: 1885.0 ms
+VNC traffic: 2701 bytes, 3 chunks in 2 seconds, largest gap: 1885.1 ms
+VNC read wait: 3549.9 ms
+VNC traffic: 4909 bytes, 2 chunks in 2 seconds, largest gap: 3550.0 ms
+VNC read wait: 308.4 ms
+VNC read wait: 53725.7 ms
+VNC traffic: 28128 bytes, 8 chunks in 2 seconds, largest gap: 53725.8 ms
+VNC read wait: 341.2 ms
+VNC read wait: 294.6 ms
+VNC read wait: 313.1 ms
+VNC read wait: 284.5 ms
+VNC read wait: 739.0 ms
+VNC read wait: 233.2 ms
+VNC traffic: 16416 bytes, 12 chunks in 2 seconds, largest gap: 739.1 ms
+VNC read wait: 130.1 ms
+VNC read wait: 130.4 ms
+VNC read wait: 111.2 ms
+VNC read wait: 133.6 ms
+VNC read wait: 131.5 ms
+VNC read wait: 139.2 ms
+VNC read wait: 138.1 ms
+VNC read wait: 168.9 ms
+VNC read wait: 182.3 ms
+VNC read wait: 663.8 ms
+VNC traffic: 52346 bytes, 50 chunks in 2 seconds, largest gap: 663.8 ms
+VNC read wait: 51330.7 ms
+VNC traffic: 6465 bytes, 3 chunks in 2 seconds, largest gap: 51330.7 ms
+VNC read wait: 422.0 ms
+VNC read wait: 259.2 ms
+VNC read wait: 218.7 ms
+VNC read wait: 100.1 ms
+VNC read wait: 587.7 ms
+VNC read wait: 162.6 ms
+VNC read wait: 705.1 ms
+VNC traffic: 33072 bytes, 15 chunks in 2 seconds, largest gap: 705.2 ms
+VNC read wait: 954.7 ms
+VNC read wait: 221.6 ms
+VNC read wait: 330.6 ms
+VNC read wait: 871.8 ms
+VNC traffic: 185948 bytes, 49 chunks in 2 seconds, largest gap: 954.7 ms
+VNC read wait: 667.3 ms
+VNC read wait: 1848.3 ms
+VNC traffic: 166766 bytes, 46 chunks in 2 seconds, largest gap: 1848.3 ms
+VNC read wait: 459.6 ms
+VNC read wait: 715.8 ms
+VNC read wait: 954.6 ms
+VNC traffic: 102480 bytes, 28 chunks in 2 seconds, largest gap: 954.7 ms
+VNC read wait: 111.8 ms
+VNC read wait: 832.5 ms
+VNC read wait: 163.4 ms
+VNC read wait: 885.5 ms
+VNC traffic: 538914 bytes, 143 chunks in 2 seconds, largest gap: 885.5 ms
+VNC read wait: 264.3 ms
+VNC read wait: 100.5 ms
+VNC read wait: 211.0 ms
+VNC read wait: 5370.8 ms
+VNC traffic: 21512 bytes, 10 chunks in 2 seconds, largest gap: 5370.9 ms
+VNC read wait: 243.2 ms
+VNC read wait: 202.7 ms
+VNC read wait: 209.4 ms
+VNC read wait: 267.4 ms
+VNC read wait: 236.9 ms
+VNC read wait: 250.7 ms
+VNC read wait: 140.8 ms
+VNC read wait: 208.0 ms
+VNC traffic: 183375 bytes, 59 chunks in 2 seconds, largest gap: 267.5 ms
+VNC read wait: 172.2 ms
+VNC read wait: 104.4 ms
+VNC read wait: 245.9 ms
+VNC read wait: 227.2 ms
+VNC read wait: 235.8 ms
+VNC read wait: 230.4 ms
+VNC read wait: 228.3 ms
+VNC read wait: 212.6 ms
+VNC read wait: 215.0 ms
+VNC traffic: 368032 bytes, 111 chunks in 2 seconds, largest gap: 246.0 ms
+VNC read wait: 222.2 ms
+VNC read wait: 129.6 ms
+VNC read wait: 137.2 ms
+VNC read wait: 197.3 ms
+VNC read wait: 209.9 ms
+VNC read wait: 184.0 ms
+VNC read wait: 193.2 ms
+VNC read wait: 193.3 ms
+VNC read wait: 126.5 ms
+VNC traffic: 392231 bytes, 113 chunks in 2 seconds, largest gap: 222.2 ms
+VNC read wait: 122.5 ms
+VNC read wait: 154.3 ms
+VNC read wait: 227.8 ms
+VNC read wait: 107.2 ms
+VNC read wait: 184.8 ms
+VNC read wait: 169.5 ms
+VNC traffic: 664181 bytes, 192 chunks in 2 seconds, largest gap: 227.9 ms
+VNC read wait: 122.2 ms
+VNC read wait: 139.3 ms
+VNC read wait: 120.4 ms
+VNC read wait: 127.5 ms
+VNC read wait: 136.4 ms
+VNC traffic: 820469 bytes, 240 chunks in 2 seconds, largest gap: 139.3 ms
+VNC read wait: 479.3 ms
+VNC read wait: 890.8 ms
+VNC read wait: 728.1 ms
+VNC traffic: 144895 bytes, 41 chunks in 2 seconds, largest gap: 890.9 ms
+VNC read wait: 223.7 ms
+VNC read wait: 215.6 ms
+VNC read wait: 142.5 ms
+VNC read wait: 144.6 ms
+VNC read wait: 131.3 ms
+VNC read wait: 187.9 ms
+VNC read wait: 174.2 ms
+VNC read wait: 178.1 ms
+VNC read wait: 125.5 ms
+VNC read wait: 104.2 ms
+VNC read wait: 105.4 ms
+VNC traffic: 132725 bytes, 64 chunks in 2 seconds, largest gap: 223.8 ms
+VNC read wait: 118.1 ms
+VNC read wait: 193.7 ms
+VNC read wait: 145.6 ms
+VNC read wait: 468.2 ms
+VNC read wait: 225.0 ms
+VNC read wait: 455.6 ms
+VNC read wait: 479.6 ms
+VNC traffic: 334083 bytes, 97 chunks in 2 seconds, largest gap: 479.6 ms
+VNC read wait: 219.7 ms
+VNC read wait: 115.0 ms
+VNC read wait: 434.5 ms
+VNC traffic: 309368 bytes, 132 chunks in 2 seconds, largest gap: 434.5 ms
+VNC read wait: 224.8 ms
+VNC read wait: 238.7 ms
+VNC read wait: 369.3 ms
+VNC traffic: 389874 bytes, 159 chunks in 2 seconds, largest gap: 369.4 ms
+VNC read wait: 162.7 ms
+VNC read wait: 145.2 ms
+VNC read wait: 162.0 ms
+VNC read wait: 187.4 ms
+VNC read wait: 150.8 ms
+VNC traffic: 208781 bytes, 102 chunks in 2 seconds, largest gap: 187.4 ms
+VNC traffic: 382540 bytes, 154 chunks in 2 seconds, largest gap: 68.9 ms
+VNC read wait: 105.4 ms
+VNC read wait: 116.9 ms
+VNC read wait: 100.5 ms
+VNC read wait: 103.5 ms
+VNC read wait: 159.1 ms
+VNC traffic: 327114 bytes, 135 chunks in 2 seconds, largest gap: 159.2 ms
+VNC read wait: 141.5 ms
+VNC read wait: 127.4 ms
+VNC read wait: 100.9 ms
+VNC read wait: 126.7 ms
+VNC read wait: 299.8 ms
+VNC read wait: 653.2 ms
+VNC traffic: 227997 bytes, 77 chunks in 2 seconds, largest gap: 653.3 ms
+VNC read wait: 816.2 ms
+VNC read wait: 178.8 ms
+VNC read wait: 416.0 ms
+VNC traffic: 352816 bytes, 135 chunks in 2 seconds, largest gap: 816.3 ms
+VNC read wait: 148.7 ms
+VNC read wait: 357.2 ms
+VNC read wait: 222.9 ms
+VNC read wait: 442.6 ms
+VNC traffic: 333899 bytes, 143 chunks in 2 seconds, largest gap: 442.7 ms
+VNC read wait: 221.2 ms
+VNC read wait: 502.3 ms
+VNC read wait: 682.1 ms
+VNC read wait: 264.3 ms
+VNC read wait: 299.0 ms
+VNC read wait: 414.5 ms
+VNC traffic: 446067 bytes, 112 chunks in 2 seconds, largest gap: 682.2 ms
+VNC read wait: 152.4 ms
+VNC read wait: 128.8 ms
+VNC read wait: 137.1 ms
+VNC read wait: 137.4 ms
+VNC read wait: 200.9 ms
+VNC read wait: 138.4 ms
+VNC read wait: 315.8 ms
+VNC traffic: 676101 bytes, 202 chunks in 2 seconds, largest gap: 315.9 ms
+VNC read wait: 432.6 ms
+VNC read wait: 129.7 ms
+VNC read wait: 246.6 ms
+VNC read wait: 222.2 ms
+VNC read wait: 175.0 ms
+VNC read wait: 156.2 ms
+VNC traffic: 716495 bytes, 197 chunks in 2 seconds, largest gap: 432.7 ms
+VNC read wait: 107.1 ms
+VNC read wait: 261.3 ms
+VNC traffic: 771622 bytes, 232 chunks in 2 seconds, largest gap: 261.3 ms
+VNC read wait: 156.1 ms
+VNC read wait: 190.2 ms
+VNC read wait: 137.5 ms
+VNC read wait: 146.5 ms
+VNC read wait: 107.8 ms
+VNC traffic: 700669 bytes, 205 chunks in 2 seconds, largest gap: 190.2 ms
+VNC read wait: 121.5 ms
+VNC read wait: 152.4 ms
+VNC read wait: 111.1 ms
+VNC traffic: 899722 bytes, 249 chunks in 2 seconds, largest gap: 152.5 ms
+VNC read wait: 118.7 ms
+VNC read wait: 150.5 ms
+VNC traffic: 1151001 bytes, 331 chunks in 2 seconds, largest gap: 150.5 ms
+VNC traffic: 1422362 bytes, 394 chunks in 2 seconds, largest gap: 95.3 ms
+VNC traffic: 1351459 bytes, 403 chunks in 2 seconds, largest gap: 89.9 ms
+VNC read wait: 145.4 ms
+VNC read wait: 212.2 ms
+VNC read wait: 143.3 ms
+VNC read wait: 142.5 ms
+VNC read wait: 143.2 ms
+VNC read wait: 139.9 ms
+VNC read wait: 108.6 ms
+VNC traffic: 441139 bytes, 168 chunks in 2 seconds, largest gap: 212.3 ms
+VNC read wait: 239.9 ms
+VNC traffic: 342223 bytes, 187 chunks in 2 seconds, largest gap: 240.0 ms
+VNC read wait: 281.2 ms
+VNC read wait: 211.1 ms
+VNC traffic: 138331 bytes, 119 chunks in 2 seconds, largest gap: 281.3 ms
+VNC read wait: 108.4 ms
+VNC read wait: 143.6 ms
